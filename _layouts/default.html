@@ -4,6 +4,10 @@
 {% include head.html %}
 
 <body>
+  <nav>
+    <a href="{{ '/' | prepend: site.baseurl | append: 'en/' }}">English</a>
+    <a href="{{ '/' | prepend: site.baseurl | append: 'zh/' }}">中文</a>
+  </nav>
 
   {% if site.data.settings.google-analytics %}
   {% include google-analytics.html %}
