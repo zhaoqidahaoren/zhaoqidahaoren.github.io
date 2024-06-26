@@ -1,188 +1,170 @@
-# Agency Jekyll Theme
-[![RubyGems Downloads](https://img.shields.io/gem/dt/jekyll-agency?label=gem%20downloads)](https://rubygems.org/gems/jekyll-agency)
-[![LICENSE](https://img.shields.io/badge/license-MIT-blue)](/LICENSE.txt)
-[![Tip Me via PayPal](https://img.shields.io/badge/PayPal-tip_me-green?logo=paypal)](https://www.paypal.me/raviriley)
-[![template button](https://img.shields.io/badge/Generate_theme_from_template-2ea44f)][generate]
-[![Featured on Jekyll-Themes.com](https://img.shields.io/badge/featured%20on-JekyllThemes-red.svg)](https://jekyll-themes.com/agency-jekyll-theme/)
+Zolan - Modern & Minimal Theme for Jekyll
+======
+Zolan is a minimal blog theme for Jekyll.
 
-## Preview - click for live demo
+* * *
 
-[![screenshot](/screenshot.PNG)][demo-page]
+Table of Contents
+-----------------
+*   [Features](#features)
+*   [Demo](#demo)
+*   [Deployment](#deployment)
+*   [Posts](#posts)
+*   [Disqus Comments](#DisqusComments)
+*   [Instagram](#instagram)
+*   [Google Analytics](#GoogleAnalytics)
+*   [Update favicon](#UpdateFavicon)
+*   [Credits](#Credits)
+*   [Support](#Support)
 
-## Warning
+* * *
 
-> :warning: **Notice for those using legacy Formspree contact forms:** :warning:
->
-> Email-based forms are being [phased out](https://help.formspree.io/hc/en-us/articles/360056076314) by Formspree. [#11](https://github.com/raviriley/agency-jekyll-theme/pull/11) updated this theme to use the [new Formspree structure](https://help.formspree.io/hc/en-us/articles/360017735154-How-to-prevent-spam). Click [here](https://help.formspree.io/hc/en-us/articles/360056076314) for instructions on updating your site's form.
+### Features
 
-## About
+* 100% responsive and clean theme
 
-This is the [Agency Bootstrap theme](https://startbootstrap.com/themes/agency/), converted to a gem-based Jekyll theme with GitHub Pages support.
+* Optimized for mobile devices
 
-While this has been done before, [here](https://github.com/y7kim/agency-jekyll-theme), [here](https://github.com/SotiriosVrachas/jekyll-theme-startbootstrap-agency), and [here](https://github.com/laklau/agency-jekyll-theme/), these are outdated and have not been updated or maintained for years. I built this theme from the most recent Bootstrap source.
+* Minimal design
 
-I also added a lot of new features that go beyond the original theme's capabilities:
+* Valid HTML5 code
 
-- GitHub Pages support
-- [template repo][template] to get up and running in minutes
-- contact form functionality powered by [Formspree.io](https://formspree.io)
-- multiple language support (currently English, Spanish, & German)
-- custom pages
-- 404 page
-- legal/Privacy Policy page
-- Google Analytics support
-- Markdown support
-- custom images
-- logo support (instead of just title text)
-- automatically updating copyright years
-- custom navigation bar, even without the header image(s)
-- customizable footer
-- custom accent color and dark/light colors
-- horizontal scrolling support for client section
-<!--
-- custom colors with automatic gradient generation (coming soon)
-- site title logo text font customization (coming soon)
-- horizontal scrolling support for portfolio section (coming soon)
-- about section (different from the timeline) -->
+* Post sharing
 
-The Jekyll structure of this theme includes:
+* Subscription form
 
-- `_portfolio` files - what generate the portfolio grid. YAML front matter handles all the details
-- the `page` layout allows custom pages, as seen in the legal and 404 pages
-- `sitetext.yml` enables complete customization of all site text
-- `navigation.yml` enables fully customizable navigation
-- `style.yml` enables fully customizable colors, background images, and other style-related things
+* Supports Disqus Comments
 
-**If you enjoy this theme, please consider [supporting me](https://www.paypal.me/raviriley) to continue developing and maintaining it.**
+* Instagram Feed
 
-<div align="center">
+* Ionicons Icons
 
-[![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/raviriley)
+* Google Fonts
 
-</div>
 
-## Installation
+* * *
 
-There are three ways to install this theme:
+### Demo
 
-1. As a gem-based theme
-2. Use the [starter template][template] (best for GitHub Pages)
-3. As a remote theme
+Check the theme in action [Demo](https://zolan-jekyll.netlify.app/)
 
-#### 1. Gem-based Theme Installation
+![Main page preview](https://github.com/artemsheludko/zolan/blob/master/images/zolan-main-page.png?raw=true)
 
-Replace the contents of your `_config.yml` file with the sample [\_config.yml](https://raw.githubusercontent.com/raviriley/agency-jekyll-theme/master/_config.yml).
+The post page would look like this:
 
-Install the gem with:
+![Post page preview](https://github.com/artemsheludko/zolan/blob/master/images/zolan-post.png?raw=true)
 
-```sh
-$ bundle add jekyll-agency
-```
+* * *
 
-Or manually.
+### Deployment
 
-1. Add this line to your Jekyll site's `Gemfile`:
-   ```ruby
-   gem "jekyll-agency"
-   ```
-2. Then execute:
-   ```sh
-   $ bundle install
-   ```
+To run the theme locally, navigate to the theme directory and run `bundle install` to install the dependencies, then run `jekyll serve` or `bundle exec jekyll serve` to start the Jekyll server.
 
-#### 2. Using the [Starter Template][template]
+I would recommend checking the [Deployment Methods](https://jekyllrb.com/docs/deployment-methods/) page on Jekyll website.
 
-This is the fastest and easiest way to get up and running on GitHub Pages.
+* * *
 
-Simply generate your own repository by clicking the button below. Then replace the sample content with your own and configure for your needs.
+### Posts
 
-<div align="center">
+To create a new post, you can create a new markdown file inside the \_posts directory by following the [recommended file structure](https://jekyllrb.com/docs/posts/#creating-post-files).
 
-[![Use this template](https://img.shields.io/badge/Generate-Use_this_template-2ea44f?style=for-the-badge)][generate]
+      ---
+      layout: post
+      title: Time to give gifts to everyone
+      date: 2018-08-23 16:04:00 +0300
+      image: 03.jpg
+      tags: Life
+      ---
 
-</div>
-    
-#### 3. Remote Theme Installation
 
-Replace your `_config.yml` file with the starter [\_config.yml](https://raw.githubusercontent.com/raviriley/agency-jekyll-theme-starter/master/_config.yml).
+You can set the tags and the post image.
 
-Replace your `Gemfile` with the starter [Gemfile](https://raw.githubusercontent.com/raviriley/agency-jekyll-theme-starter/master/Gemfile).
+Add post images to **/images/** directory.
 
-Then install gems.
+For tags, try to not add space between two words, for example, `Ruby on Rails`, could be something like (`ruby-on-rails`, `Ruby_on_Rails`, or `Ruby-on-Rails`).
 
-```sh
-$ bundle install
-```
+* * *
 
-<!--
-## Documentation and Usage
+### Disqus Comments
 
-**TODO:** Write usage instructions here. Describe available layouts, includes, or assets.
+Zolan Theme comes with Disqus comments enabled.
 
-navheader is used only for the home page. nav is used everywhere else.
+Open `_data/settings.yml` file, and change the `mr-brown` value on line 26 with your [Disqus account shortname](https://help.disqus.com/customer/portal/articles/466208).
 
-Layouts:
+      Comment Section (Disqus)
+      disqus-identifier: mr-brown # Add your shortname for Disqus Comment. For example mr-brown
 
-Includes:
 
--->
+That’s all you need to setup Disqus from the theme side. If you get any issue regarding that comments are unable to load. First, make sure you have [registered your website with Disqus (Step 1)](https://help.disqus.com/customer/portal/articles/466182-publisher-quick-start-guide).
 
-## Contributing
+And also check [Disqus troubleshooting guide](https://help.disqus.com/customer/portal/articles/472007-i-m-receiving-the-message-%22we-were-unable-to-load-disqus-%22) if you still have issues.
 
-This project is intended to be a welcoming space for collaboration. If you have an idea, suggestion, feature request, etc., feel free to open an issue or pull request.
+* * *
 
-For bug reports, follow the provided template.
+### Instagram
 
-#### Improvements - Up for Grabs
+The Instagram feed is working using [Instafeed.js](http://instafeedjs.com/) to show the photos.
 
-- [x] multiple language support thanks to [@rbenitezpagan](https://github.com/rbenitezpagan)
-  - [x] Spanish thanks to [@rbenitezpagan](https://github.com/rbenitezpagan)
-  - [x] German thanks to [@bkfirmen](https://github.com/bkfirmen)
-  - [ ] Chinese
-  - [ ] Arabic
-  - [ ] etc
-- [ ] customizable background coloring for each section
+First, you will need to get your account `userId` and `accessToken` from the following URLs:
 
-## Development
+*   userId: [http://codeofaninja.com/tools/find-instagram-user-id/](http://codeofaninja.com/tools/find-instagram-user-id/)
+*   accessToken: [instagram.pixelunion.net](http://instagram.pixelunion.net/)
 
-To set up your environment to develop this theme, clone this repo or your fork.
+Second, open the `js/common.js` file and replace the `userId` and `accessToken` values.
 
-```sh
-$ git clone https://github.com/raviriley/agency-jekyll-theme.git
-$ cd agency-jekyll-theme
-```
+    var instagramFeed = new Instafeed({
+          get: 'user',
+          limit: 6,
+          resolution: 'standard_resolution',
+          userId: '8987997106',
+          accessToken: '8987997106.924f677.8555ecbd52584f41b9b22ec1a16dafb9',
+          template: ''
+    });
 
-Then run:
 
-```sh
-$ bundle install
-```
+Third, open the `_data/settings.yml` file and replace the `instafeed: false` on `instafeed: true` value.
 
-To test the theme, run this. (Using the `--trace` flag for verbose errors.)
+    # Instagram Feed
+    instafeed: false # To enable the instafeed, use the value true. To turn off use the value false.
 
-```sh
-$ bundle exec jekyll serve --trace
-```
 
-Then open your browser at:
+* * *
 
-- http://localhost:4000
+### Google Analytics
 
-Add pages, documents, data, etc. like normal to test the theme's contents. As you make modifications, your site will regenerate and you should see the changes in the browser after a refresh.
+To integrate Google Analytics, open `_data/settings.yml`, and add your Google Analytics identifier.
 
-## License
+    # Google Analytics
+    google-analytics: # Add your identifier. For example UA-99631805-1
 
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-<!--
+* * *
 
-## Example Implementations
+### Update favicon
 
-- [CV Enterprises](https://cventerprises.org)
-- [Mortazavi Lab at UC Irvine](https://mortazavilab.github.io/)
+You can find the current favicon (favicon.ico) inside the theme root directory, just replace it with your new favicon.
 
--->
+* * *
 
-[demo-page]: https://raviriley.github.io/agency-jekyll-theme-starter/
-[template]: https://github.com/raviriley/agency-jekyll-theme-starter
-[generate]: https://github.com/raviriley/agency-jekyll-theme-starter/generate
+### Credits
+
+I have used the following scripts, fonts or other files as listed.
+
+*   [Google Fonts](https://fonts.google.com/specimen/Nunito) (Roboto, Sans Serif).
+*   [Ionicons Icons](https://ionicons.com/)
+*   [FitVids.js](http://fitvidsjs.com/)
+*   [Medium’s Image Zoom](https://github.com/fat/zoom.js)
+*   [Instafeed.js](http://instafeedjs.com/)
+*   [jQuery.com](https://jquery.com/)
+*   Preview Images form [unsplash.com](https://unsplash.com/), [pexels.com](https://www.pexels.com/)
+
+* * *
+### License
+
+Mit License
+
+* * *
+
+### Support
+<p>If you like the themes that I create you can become my sponsor on <a href="https://www.patreon.com/artemsheludko" target="_blank">Patreon</a>.
+<p align="center"><b>Thank you for your support ❤️</b></p>
