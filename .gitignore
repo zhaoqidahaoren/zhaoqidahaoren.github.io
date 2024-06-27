@@ -1,18 +1,10 @@
-# ignored subdirecotires:
-build/*
-bin/*
-devdoc/*
-scripts/misc/*
-performance/*
-
-# temporary files:
+_site
+.sass-cache
+.jekyll-metadata
+*.gem
+.bundle
+vendor/bundle
 *.swp
+*.tga
 *.swo
-
-# log files:
-*.log
-
-# object files and executables:
-*.o
-*.out
-*.bin
+*.bak
