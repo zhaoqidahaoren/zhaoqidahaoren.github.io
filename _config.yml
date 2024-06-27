@@ -1,56 +1,24 @@
-# Site settings
-title: CHAP
-email: chap@bioch.ox.ac.uk
-description: >
-  Jekyll Template for Project Websites
-  providing documentation and blog post pages.
-
-baseurl: "/" # the subpath of your site, e.g. /blog/
-url: https://www.channotation.org # the base hostname & protocol for your site
-git_address: https://github.com/channotation/chap
-git_edit_address: https://github.com/channotation/chap/
-
-# theme options from https://bootswatch.com/
-# comment out this to use default Bootstrap
-bootwatch: flatly
-
-# Build settings
+name: Flex
 markdown: kramdown
-highlighter: rouge
-gems:
-  - jekyll-feed
-  - jekyll-redirect-from
-  - jekyll-seo-tag
-  - jekyll-sitemap
+highlighter: pygments
+exclude: ["LICENSE.txt", "README.md"]
 
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - .idea/
-  - .gitignore
-  - README.md
-timezone: Europe/London
-defaults:
-- scope:
-    path: _posts
-    type: posts
-  values:
-    layout: post
-    sectionid: blog
+baseurl: ""
+permalink: /:title/
 
-- scope:
-    path: _docs
-    type: docs
-  values:
-    layout: docs
-    sectionid: docs
-    seo:
-      type: "WebPage"
 
-collections:
-  docs:
-    permalink: /:collection/:path/
-    output: true
-  posts:
-    permalink: /blog/:year/:month/:day/:title/
-    output: true
+# Paginate
+paginate: 1
+paginate_path: "/pagination/page:num/"
+
+
+# Plugins
+plugins:
+  - jekyll-multiple-languages-plugin
+  - jekyll-paginate
+
+
+# jekyll-multiple-languages-plugin settings:
+languages: ["it", "en", "es"]
+
+exclude_from_localizations: ["javascript", "images", "css", "scripts", "favicon.ico"]

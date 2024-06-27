@@ -1,23 +1,16 @@
-# Jekyll Doc Theme
+Minimal website using multiple languages plugin
+===============================================
 
-Go to [the website](https://aksakalli.github.io/jekyll-doc-theme/) for detailed information and demo.
+![Jekyll Multiple Languages Plugin](../brand/jekyll_multiple_languages_plugin_logo.png)
 
-## Running locally
+Features:
+- Internationalization of the website
+- Per-post translation link
+- Permalinks demo
+- Pagination demo
 
-You need Ruby and gem before starting, then:
+Notes:
+- The website is based on Flex theme.
+- It does not work with GitHub pages because the I18N plugin is not in the main
+  Jekyll repository and is not considered "safe".
 
-```bash
-# install bundler
-gem install bundler
-
-# clone the project
-git clone https://github.com/aksakalli/jekyll-doc-theme.git
-cd jekyll-doc-theme
-
-# run jekyll with dependencies
-bundle exec jekyll serve
-```
-
-## License
-
-Released under [the MIT license](LICENSE).
