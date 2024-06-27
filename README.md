@@ -1,101 +1,63 @@
-# Docsy Jekyll Theme
+[![Build Status](https://travis-ci.org/channotation/chap.svg?branch=master)](https://travis-ci.org/channotation/chap)
 
-[![CircleCI](https://circleci.com/gh/vsoch/docsy-jekyll/tree/master.svg?style=svg)](https://circleci.com/gh/vsoch/docsy-jekyll/tree/master)
-<a href="https://jekyll-themes.com/docsy-jekyll/">
-    <img src="https://img.shields.io/badge/featured%20on-JT-red.svg" height="20" alt="Jekyll Themes Shield" >
-</a>
+# CHAP - The Channel Annotation Package #
 
-![https://raw.githubusercontent.com/vsoch/docsy-jekyll/master/assets/img/docsy-jekyll.png](https://raw.githubusercontent.com/vsoch/docsy-jekyll/master/assets/img/docsy-jekyll.png)
+*Please cite [G. Klesse, S. Rao, M. S. P. Sansom, and S. J. Tucker "CHAP: A Versatile Tool for the Structural and Functional Annotation of Ion Channel Pores". Journal of Molecular Biology, 2019.](https://doi.org/10.1016/j.jmb.2019.06.003) if you use CHAP in your academic work.*
 
-This is a [starter template](https://vsoch.github.com/docsy-jekyll/) for a Docsy jekyll theme, based
-on the Beautiful [Docsy](https://github.com/google/docsy) that renders with Hugo. This version is intended for
-native deployment on GitHub pages. The original [Apache License](https://github.com/vsoch/docsy-jekyll/blob/master/LICENSE) is included.
+CHAP is a tool for the functional annotation of ion channel structures written in C++. See the website under [www.channotation.org][CHANNOTATION] for a full documentation including installation instructions and usage examples. If you have any questions please use the GitHub [Issue Tracker](https://github.com/channotation/chap/issues).
 
-## Changes
 
-The site is intended for purely documentation, so while the front page banner
-is useful for business or similar, this author (@vsoch) preferred to have
-the main site page go directly to the Documentation view. Posts
-are still provided via a feed.
+## Prerequisites ##
 
-## Usage
+Prior to installing CHAP, make sure that you have the following libraries and tools installed:
 
-### 1. Get the code
+1. The [CMake][CMake] tool in version 3.2 or higher. This will typically be available through your system's package manager. For example, on Ubuntu you can install CMake by typing `sudo apt-get install cmake`. CMake is used to check the availability of libraries and compilers on your system and will ensure that CHAP is installed properly.
+2. A C++ compiler that supports the `C++11` standard. A popular choice is the [GNU Compiler Collection][GCC], which on Ubuntu can be obtained by typing `sudo apt-get install gcc`.
+3. The [Boost][Boost] C++ libraries, which on Ubuntu can be installed using `sudo apt-get install libboost-all-dev`. Boost algorithms are used in CHAP to solve some root finding and optimisation problems.
+4. The CBLAS and LAPACKE linear algebra libraries. On Ubuntu, the easiest way to obtain these is by typing `sudo apt-get install libblas-dev libatlas-base-dev libopenblas-dev liblapacke-dev`. The linear algebra libraries are used in CHAP's spline interpolation.
+5. The `libgromacs` library of the [Gromacs][Gromacs] molecular dynamics engine in version 2016 or higher. Comprehensive installation instructions for Gromacs can be found [here][Gromacs-install].
+Please note that for using Gromacs as a library, the underlying FFTW libray
+may **not** be installed automatically, i.e. you need to set
+`-DGMX_BUILD_OWN_FFTW=OFF` when running CMake during the Gromacs
+installation.
 
-You can clone the repository right to where you want to host the docs:
+CHAP also depends on [RapidJSON](http://rapidjson.org/), but this is included as a header-only library, and on [GTest][GTest], but this is downloaded and installed automatically by CMake, so you don't need to do anything about either of these (you will however need Internet access when installing CHAP).
 
-```bash
-git clone https://github.com/vsoch/docsy-jekyll.git docs
-cd docs
-```
 
-### 2. Customize
+## Installation ##
 
-To edit configuration values, customize the [_config.yml](https://github.com/vsoch/docsy-jekyll/blob/master/_config.yml).
-To add pages, write them into the [pages](https://github.com/vsoch/docsy-jekyll/blob/master/pages) folder. 
-You define urls based on the `permalink` attribute in your pages,
-and then add them to the navigation by adding to the content of [_data/toc.myl](https://github.com/vsoch/docsy-jekyll/blob/master/_data/toc.yml).
-The top navigation is controlled by [_data/navigation.yml](https://github.com/vsoch/docsy-jekyll/blob/master/_data/navigation.yml)
-
-### 3. Options
-
-Most of the configuration values in the [_config.yml](https://github.com/vsoch/docsy-jekyll/blob/master/_config.yml) are self explanatory,
-and for more details, see the [getting started page](https://vsoch.github.io/docsy-jekyll/docs/getting-started)
-rendered on the site.
-
-### 4. Serve
-
-Depending on how you installed jekyll:
+For a minimal install of CHAP create a `build` directory parallel to the source tree and from there run `cmake`, `make`, `make check`, and `make install`.
 
 ```bash
-jekyll serve
-# or
-bundle exec jekyll serve
+cd chap
+mkdir build
+cd build
+cmake ..
+make
+make check
+sudo make install
 ```
 
-**NOTE:** If the above serve command throws an error saying `require': cannot load such file -- webrick (LoadError)` try to run `bundle add webrick` to automatically add the webrick gem to your Gemfile, or manually add `gem "webrick"` line to the Gemfile and then run the serve command again.
-
-
-### 5. Run as a container in dev or prod
-
-#### Software Dependencies
-
-If you want to run docsy jekyll via a container for development (dev) or production (prod) you can use containers. This approach requires installing [docker-ce](https://docs.docker.com/engine/install/ubuntu/) and [docker-compose](https://docs.docker.com/compose/install/). 
-
-#### Customization
-
-Note that the [docker-compose.yml](docker-compose.yml) file is using the [jekyll/jekyll:3.8](https://hub.docker.com/r/jekyll/jekyll/tags) image. If you want to make your build more reproducible, you can specify a particular version for jekyll (tag). Note that at the development time of writing this documentation, the latest was tag 4.0.0,
-and it [had a bug](https://github.com/fastai/fastpages/issues/267#issuecomment-620612896) that prevented the server from deploying.
-
-If you are deploying a container to production, you should remove the line to
-mount the bundles directory to the host in the docker-compose.yml. Change:
-
-```yaml
-    volumes: 
-      - "./:/srv/jekyll"
-      - "./vendor/bundle:/usr/local/bundle"
-      # remove "./vendor/bundle:/usr/local/bundle" volume when deploying in production
-```
-
-to:
-
-```yaml
-    volumes: 
-      - "./:/srv/jekyll"
-```
-
-This additional volume is optimal for development so you can cache the bundle dependencies,
-but should be removed for production. 
-
-#### Start Container
-
-Once your docker-compose to download the base container and bring up the server:
+CMake will automatically find all dependencies (and inform you of missing ones), `make` will compile the code (you can use the `make -j` flag to speed this up on multicore machines), `make check` runs a suite of unit tests, and `make install` will place the binary in `/usr/local/chap` (so you will need sudo rights for this last step). To check if CHAP has been installed properly, you can type
 
 ```bash
-docker-compose up -d
+chap -h
 ```
 
-You can then open your browser to [http://localhost:4000](http://localhost:4000)
-to see the server running.
+which should bring up an online help for using CHAP.
 
-> Node : changes `baseurl: ""` in _config.yml  when you are running in local and prod according to the requirement.
+
+[CMake]: https://cmake.org/
+[Boost]: http://www.boost.org/
+[CBLAS]: http://www.netlib.org/blas/
+[LAPACKE]: http://www.netlib.org/lapack/lapacke.html
+[Gromacs]: http://www.gromacs.org/
+[Gromacs-install]: http://manual.gromacs.org/documentation/
+[GCC]: https://gcc.gnu.org/
+[GTest]: https://github.com/google/googletest
+[CHANNOTATION]: http://www.channotation.org
+
+
+## New ##
+
+If you have ubuntu and you want to run a precompiled chap version with a singularity image, follow these instructions [here](https://github.com/channotation/chap/blob/singularity_branch/docs/_docs/getting-started/index.md)

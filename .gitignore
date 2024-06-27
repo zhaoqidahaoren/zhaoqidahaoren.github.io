@@ -1,3 +1,18 @@
-vendor
-_site
-Gemfile.lock
+# ignored subdirecotires:
+build/*
+bin/*
+devdoc/*
+scripts/misc/*
+performance/*
+
+# temporary files:
+*.swp
+*.swo
+
+# log files:
+*.log
+
+# object files and executables:
+*.o
+*.out
+*.bin
