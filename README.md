@@ -1,295 +1,219 @@
-## Introduction
+---
+layout: home
+title: Jekyll Gitbook Theme
+permalink: /
+---
 
-TDOS (Trusted Data Operation System) is the world’s first operating system-level blockchain service jointly developed by the Financial Technology Research Institute of Shanghai University of Finance and Economics and Changzhou Yongyang Information Technology Co., Ltd., including a complete set of The technical framework for the development and operation and maintenance of the underlying system of the blockchain, smart contract applications and its derivative services.
+Make Jelly site have a GitBook look!
 
- TDOS takes fast deployment as its core feature, and aims to enable general technical personnel and users to quickly develop, freely configure, and easily use the blockchain business system, and break through the technical and cognitive barriers between the blockchain and general technical personnel and the public. , To realize the accelerated landing of blockchain applications.
+## Demo
 
+Live demo on Github Pages: [https://sighingnow.github.io/jekyll-gitbook](https://sighingnow.github.io/jekyll-gitbook)
 
-## Product roadmap
+[![Jekyll Themes](https://img.shields.io/badge/featured%20on-JekyllThemes-red.svg)](https://jekyll-themes.com/jekyll-gitbook/)
 
-The version iteration plan of TDOS products is as follows:
+## Why Jekyll with GitBook
 
-1）v2.0
+GitBook is an amazing frontend style to present and organize contents (such as book chapters
+and blogs) on Web. The typical to deploy GitBook at [Github Pages][1]
+is building HTML files locally and then push to Github repository, usually to the `gh-pages`
+branch. It's quite annoying to repeat such workload and make it hard for people do version
+control via git for when there are generated HTML files to be staged in and out.
 
- release time：2020/12
+This theme takes style definition out of generated GitBook site and provided the template
+for Jekyll to rendering markdown documents to HTML, thus the whole site can be deployed
+to [Github Pages][1] without generating and uploading HTML bundle every time when there are
+changes to the original repo.
 
-TDOS preliminary integrated version: TDOS basic technology stack and ecological tools, one-click deployment and installation of the underlying blockchain system.
+## How to Get Started
 
-2）v3.0
+This theme can be used just as other [Jekyll themes][1] and support [remote theme][12],
+see [the official guide][13] as well.
 
-ETA：2021/6
+You can introduce this jekyll theme into your own site by either
 
-TDOS privacy computing version: TDOS enhances privacy protection functions, such as homomorphic hiding, multi-party computing, data recasting, etc.
+- [Fork][3] this repository and add your markdown posts to the `_posts` folder.
+- Use as a remote theme in your [`_config.yml`][14](just like what we do for this
+  site itself),
 
-3）v4.0
+```yaml
+remote_theme: sighingnow/jekyll-gitbook
+```
 
-ETA：2021/12
+### Deploy Locally with Jekyll Serve
 
-TDOS network version: support different network cross-chain and network merger based on TDOS deployment.
+This theme can be ran locally using Ruby and Gemfiles.
 
-4）v5.0
+[Testing your GitHub Pages site locally with Jekyll](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/testing-your-github-pages-site-locally-with-jekyll) - GitHub
 
-ETA：2022/6
+## Full-text search
 
-TDOS full ecological tool version: completely integrated with the operating system, software and hardware integration, to achieve a trusted computing environment.
+The search functionality in jekyll-gitbook theme is powered by the [gitbook-plugin-search-pro][5] plugin and is enabled by default.
 
-5）v6.0
+[https://sighingnow.github.io/jekyll-gitbook/?q=generated](https://sighingnow.github.io/jekyll-gitbook/?q=generated)
 
-ETA：2022/12
+## Code highlight
 
-TDOS industry integration version: According to different business environments, such as finance, traceability, games, etc., provide customized versions.
+The code highlight style is configurable the following entry in `_config.yaml`:
 
-## Installation Guide
+```yaml
+syntax_highlighter_style: colorful
+```
 
-### Deployment environment requirements 
+The default code highlight style is `colorful`, the full supported styles can be found from [the rouge repository][6]. Customized
+style can be added to [./assets/gitbook/rouge/](./assets/gitbook/rouge/).
 
-（1）Hardware requirements
+## How to generate TOC
 
- &nbsp;&nbsp; CPU i5 or +
+The jekyll-gitbook theme leverages [jekyll-toc][4] to generate the *Contents* for the page.
+The TOC feature is not enabled by default. To use the TOC feature, modify the TOC
+configuration in `_config.yml`:
 
- &nbsp;&nbsp; RAM：8G or +
+```yaml
+toc:
+    enabled: true
+    h_min: 1
+    h_max: 3
+```
 
- &nbsp;&nbsp; HD capacity：100G or +
+## Google Analytics, etc.
 
- (2) Software requirements
+The jekyll-gitboook theme supports embedding the [Google Analytics][7], [CNZZ][8] and [Application Insights][9] website analytical tools with the following
+minimal configuration in `_config.yaml`:
 
-  &nbsp;&nbsp; Initial Operation System: Mac OS 10.15 or +/ Window 10 or +
+```yaml
+tracker:
+  google_analytics: "<YOUR GOOGLE ANALYTICS KEY, e.g, UA-xxxxxx-x>"
+```
 
-  &nbsp;&nbsp; This system takes installation in a virtual machine environment as an example, and it can also be installed in a physical machine; 
+Similarly, CNZZ can be added with the following configuration in `_config.yaml`
 
-  &nbsp;&nbsp; For the specific configuration requirements of VMWare, see Annex 1; 
+```yaml
+tracker:
+  cnzz: "<YOUR CNZZ ANALYTICS KEY, e.g., xxxxxxxx>"
+```
 
-  &nbsp;&nbsp; If you don’t have a virtual machine installed, you can go to the official website to download: https://www.vmware.com) 
+Application Insights can be added with the following configuration in `_config.yaml`
 
-###  The installation of TDOS
+```yaml
+tracker:
+  application_insights: "<YOUR APPLICATION INSIGHTS CONNECTION STRING>"
+```
 
-(1) Install [TDOS.iso](https://tdos-store.oss-cn-beijing.aliyuncs.com/TDOS.iso) image in the virtual machine; 
+## Disqus comments
 
-(2) Steps of installation:
+[Disqus](https://disqus.com/) comments can be enabled by adding the following configuration in `_config.yaml`:
 
- &nbsp;&nbsp; step 1: open the virtual machine 
+```yaml
+disqushandler: "<YOUR DISQUS SHORTNAME>"
+```
 
-![picture1](img/install/picture1.png)
+## Jekyll collections
 
- &nbsp;&nbsp;Step 2: Select Boot system installer to run TDOS virtual machine mirroring system 
+Jekyll's [collections][15] is supported to organize the pages in a more fine-grained manner, e.g.,
 
-![picture2](img/install/picture2.png)
+```yaml
+collections:
+  pages:
+    output: true
+    sort_by: date
+    permalink: /:collection/:year-:month-:day-:title:output_ext
+```
 
- &nbsp;&nbsp;Step 3: Enter the default user account (yongyang), enter the password 123456 (default), unlock the system and click Sign In to reset the account; 
+## Extra StyleSheet or Javascript elements
 
-![picture3](img/install/picture3.png)
+You can add extra CSS or JavaScript references using configuration collections:
 
- &nbsp;&nbsp;Step 4: Fill in your name, new user login name, user password (make sure you remember it, it will be used in subsequent operations), Root account password (can be ignored), and host name (numbers in English are optional, no word requirements). When finished, click to go to the next step. 
-![picture4](img/install/picture4.png)
+- extra_css: for additional style sheets. If the url does not start by http, the path must be relative to the root of the site, without a starting `/`.
+- extra_header_js: for additional scripts to be included in the `<head>` tag, after the `extra_css` has been added. If the url does not start by http, the path must be relative to the root of the site, without a starting `/`.
+- extra_footer_js: for additional scripts to be included at the end of the HTML document, just before the site tracking script. If the url does not start by http, the path must be relative to the root of the site, without a starting `/`.
 
- &nbsp;&nbsp;Step 5: Delete the original partition! 
-[Picture5](img/install/picture5.png) 
+## Customizing font settings
 
- &nbsp;&nbsp;Step 6: Select the second partition and click the arrow (confirm) 
+The fonts can be customized by modifying the `.book.font-family-0` and `.book.font-family-1` entry in [`./assets/gitbook/custom.css`][10],
 
-![Picure6](img/install/picture6.png)
+```css
+.book.font-family-0 {
+    font-family: Georgia, serif;
+}
+.book.font-family-1 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+```
 
- &nbsp;&nbsp;Step 7: Check the box content, and then select / at the red arrow. When finished, click Next; 
-![Picure7](img/install/picture7.png)
+## Tips, Warnings and Dangers blocks
 
- &nbsp;&nbsp;Step 8: Click start and wait for completion
-![Pic 8](img/install/picture8.png)
+The jekyll-gitbook theme supports customized kramdown attributes (`{: .block-tip }`, `{: .block-warning }`,
+`{: .block-danger }`) like that displayed in [the discord.js website][11]. The marker can be used like
 
-![Picture9](img/install/picture9.png)
+```markdown
+> ##### TIP
+>
+> This guide is last tested with @napi-rs/canvas^0.1.20, so make sure you have
+> this or a similar version after installation.
+{: .block-tip }
+```
 
- &nbsp;&nbsp;Step 9: Click reboot; 
+Rendered page can be previewed from
 
-![Picture10](img/install/picture10.png)
+[https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-06-30-tips_warnings_dangers.html](https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-06-30-tips_warnings_dangers.html)
 
- &nbsp;&nbsp;Step 10: If you haven't entered this interface for a long time, click Enter; 
-![Picture11](img/install/picture11.png)
+## Cover image inside pages
 
- &nbsp;&nbsp;Step 11: Enter the new account password and log in again 
-![Picture12](img/install/picture12.png)
+The jekyll-gitbook theme supports adding a cover image to a specific page by adding
+a `cover` field to the page metadata:
 
- &nbsp;&nbsp;Step 12: After the TDOS mirroring system is installed, this interface will be displayed. 
-![Picture13](img/install/picture13.png)
+```diff
+  ---
+  title: Page with cover image
+  author: Tao He
+  date: 2022-05-24
+  category: Jekyll
+  layout: post
++ cover: /assets/jekyll-gitbook/dinosaur.gif
+  ---
+```
 
-###  TDOS Deployment Guide
+The effect can be previewed from
 
-(1) Preparation: Before installing the wizard tool, if necessary, install Vmware-tools (see attachment 2 for details) 
+[https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-05-24-page_cover.html](https://sighingnow.github.io/jekyll-gitbook/jekyll/2022-05-24-page_cover.html)
 
-(2) Wizard tool installation 
+## Diagrams with mermaid.js
 
-&nbsp;&nbsp;Step 1: Click the red arrow to open the application interface; 
+This jekyll-theme supports [mermaid.js](https://mermaid.js.org/) to render diagrams
+in markdown.
 
-![Picture14](img/install/picture14.png)
+To enable the mermaid support, you need to set `mermaid: true` in the front matter
+of your post.
 
-&nbsp;&nbsp;Step 2: Click the application icon in the red box to start the installation; 
-![Picture15](img/install/picture15.png)
+```markdown
+---
+mermaid: true
+---
+```
 
-&nbsp;&nbsp;Step 3: After opening, as shown in the figure, click inside the red box to enter the installation; 
-![Picture16](img/install/picture16.png)
+The example can be previewed from
 
-&nbsp;&nbsp;Step 4: This is the TDOS software installation license agreement. After reading and agreeing, click in the red box to proceed to the next step; 
-![Picture17](img/install/picture17.png)
+[https://sighingnow.github.io/jekyll-gitbook/jekyll/2023-08-31-mermaid.html](https://sighingnow.github.io/jekyll-gitbook/jekyll/2023-08-31-mermaid.html)
 
-&nbsp;&nbsp;Step 5: After agreeing, display the installed components and click the "Continue" button; 
-![Picture18](img/install/picture18.png)
+## License
 
-&nbsp;&nbsp;Step 6: Enter the administrator password (login password) set in the virtual machine image, and click "Continue" to enter the next step; 
-![Picture19](img/install/picture19.png)
+This work is open sourced under the Apache License, Version 2.0.
 
-&nbsp;&nbsp;Step 7: Copy the TDOS serial number and paste it. If there is no TDOS serial number, please contact the TDOS team to apply for the serial number. Click the "Continue" button; 
-![Picture20](img/install/picture20.png)
+Copyright 2019 Tao He.
 
-&nbsp;&nbsp;Step 8: Click to download the two files of node program and operation and maintenance tool respectively; 
-![Picture21](img/install/picture21.png)
-
-&nbsp;&nbsp;Step 9: After the installation is complete, click the "Continue" button; 
-![Picture22](img/install/picture22.png)
-
-&nbsp;&nbsp;Step 10: By default, "Connect to an existing network" is selected, or you can choose to create a new network. The new network has two modes: template mode and expert mode. Choose any network, click "Continue" to proceed to the next step; 
-
-&nbsp;&nbsp;<b>1. The prerequisite for choosing to connect to an existing network is that the existing network is successfully deployed. There is no need to select consensus mechanism, cryptographic components, block generation speed, etc., just enter the network address to be connected and click to continue deployment. </b>
-![picture23](img/install/picture23.png)
-
-&nbsp;&nbsp;<b>2. Select the template mode and click Continue. </b>
-![picture82](img/install/picture82.png)
-
-&nbsp;&nbsp;Select the consensus mechanism, you can choose any of poa, pos and pow, and click to proceed to the next step. 
-![picture83](img/install/picture83.png)
-
-&nbsp;&nbsp;Asymmetric encryption algorithm can choose SM2, ED25519, hash algorithm can choose SM3, KECCAK-256, SHA3-256, and they can be combined arbitrarily. After selecting the cryptographic components, click Continue. 
-![picture84](img/install/picture84.png)
-
-&nbsp;&nbsp;The block generation speed should not be less than 5 seconds. Fill in the number directly without the time unit. The default time unit is s; 
-
-&nbsp;&nbsp;The network ID cannot start with a number, nor can special characters appear; 
-
-&nbsp;&nbsp;The node type can be full node or consensus node. If the seed node does not enable node discovery, neighbor nodes can connect to the network, but the seed node block will not be synchronized; 
-
-&nbsp;&nbsp;Click Continue to proceed to the next deployment. 
-![picture85](img/install/picture85.png)
-
-&nbsp;&nbsp;<b>3. Select expert mode and click Continue. </b> 
-![picture86](img/install/picture86.png)
-
-&nbsp;&nbsp;Consensus mechanism can choose poa, pos and pow three; 
-
-&nbsp;&nbsp;The block generation speed should not be less than 5 seconds. Fill in the number directly without the time unit. The default time unit is "s"; 
-
-&nbsp;&nbsp;Handling fee = gas unit price * gas, a handling fee will be charged for sending a transaction, the gas unit price is set to 0, and no handling fee will be charged for sending a transaction; 
-
-&nbsp;&nbsp;The seed node is mainly used to connect the node when the TDOS network is first started. If it is a single miner node, no input is required. The format of the seed node is: network ID://IP:port number, for example: helloworld://192.168.1.3:7000; 
-
-&nbsp;&nbsp;If you choose to turn on mining, the node is a consensus node, and if you choose not to turn on mining, it is a full node; 
-
-&nbsp;&nbsp;Asymmetric encryption algorithm can choose SM2, ED25519, hash algorithm can choose SM3, KECCAK-256, SHA3-256, they can be any combination; 
-
-&nbsp;&nbsp;After selecting the cryptographic components, click Continue. 
-
-![picture87](img/install/picture87.png)
-
-&nbsp;&nbsp;If you select an empty block, the system will automatically generate a block regardless of whether there is a transaction sent or not. If no empty block is selected, the block will be generated only after the transaction is successfully sent; 
-
-&nbsp;&nbsp;If turn on "node discovery", neighbor nodes can synchronize data, if you do not turn on "node discovery", neighbor nodes cannot synchronize data; 
-
-&nbsp;&nbsp;The difficulty value parameter is only available when the pow consensus is selected, and this parameter must be greater than or equal to 1, and cannot be 0; 
-
-&nbsp;&nbsp;The network ID cannot start with a number, nor can it be a special character; 
-
-&nbsp;&nbsp;Click Continue to the next step. 
-
-![picture88](img/install/picture88.png)
-
-&nbsp;&nbsp;The pre-allocated address and amount will be written into the genesis block, and these accounts will have the corresponding amount after the node is started; 
-
-&nbsp;&nbsp;For PoA and PoS consensus, miner addresses need to be preset, and these addresses will become the earliest consensus participants; 
-
-&nbsp;&nbsp;The pre-allocated addresses and miner addresses are generated by selecting different cryptographic algorithms in [JS-SDK](https://github.com/TrustedDataFramework/js-sdk). The system supports adding up to 20 pre-allocated addresses and miners address. 
-
-&nbsp;&nbsp;<span style="color:red;background:background color;font-size:text size;font-family:font;">It is important to note that the current node address is determined by the selected asymmetric encryption algorithm and Determined by different combinations of Greek algorithm</span> 
-
-&nbsp;&nbsp;Click to continue. 
-
-![picture89](img/install/picture89.png)
-
-&nbsp;&nbsp;The configured parameters are displayed here for confirmation, click to continue. 
-
-![picture90](img/install/picture90.png)
-
-&nbsp;&nbsp;Step 11: Click the "Deploy" button to enter the next step; 
-
-![Picture24](img/install/picture24.png)
-
-&nbsp;&nbsp;Step 12: Wait for the progress bar to complete the process; 
-
-![Picture25](img/install/picture25.png)
-
-&nbsp;&nbsp;Step 13: Click Finish to end the installation. 
-
-![Picture27](img/install/picture26.png)
-
-### Installation completion status description
-
-(1) The installation completion interface is as follows: 
-
-![Picture27](img/install/picture26.png)
-
-(2) Function description 
-
-&nbsp;&nbsp;Account password: uniformly assigned by the system, used to log in to the TDOS operation and maintenance platform; 
-
-&nbsp;&nbsp;TDOS operation and maintenance tools: TDOS operation and maintenance tools can help users synchronize the specific conditions of the monitoring chain, and make operation and maintenance adjustments in terms of fork recovery, jam monitoring, import and export, early warning notifications, and authentication settings. 
-
-&nbsp;&nbsp;DAPP Homepage: Users can understand TDOS application scenarios more intuitively through DAPP 
-
-&nbsp;&nbsp;Smart contract development environment: Users can develop smart contracts on it. 
-
-### annex
-
-#### annex 1:
-
- virtual machine configuration in Windows
-
-Download the VMware virtual machine file from the Internet for installation.
-
-Step 1: Create a new virtual machine
-
-![图片57](img/install/picture57.png)
-
-Step 2: Default information and proceed to the next step;
-
-![图片58](img/install/picture58.png)
-
-Step 3: Select the local mirror file TDOS.iso, download link: https://tdos-store.oss-cn-beijing.aliyuncs.com/TDOS.iso
-
-
-![图片59](img/install/picture59.png)
-
-![图片60](img/install/picture60.png)
-
-Step 4: Choose the guest operating system linux and version Ubuntu
-
-![图片61](img/install/picture61.png)
-
-Step 5: Name the virtual machine and select the installation location
-
-![图片62](img/install/picture62.png)
-
-
-Step 6: Specify the disk capacity, set >=50g
-
-![图片63](img/install/picture63.png)
-
-Step 7: Customize the virtual machine hardware. It is recommended that the memory configuration is not less than 8G, the number of processors is not less than 4, the network adapter selects the bridge mode, and the copy physical network connection status is checked.
-
-![图片64](img/install/picture64.png)
-
-![图片65](img/install/picture65.png)
-
-![图片66](img/install/picture66.png)
-
-![图片67](img/install/picture67.png)
-
-Step 8: Configuration is complete
-
-## How to use this document
-
-Through this document, you can get the details of the TDOS architecture and the basic methods for users to use TDOS. First of all, if you want to be a node in the network, you need to install and run a TDOS client. Users can install the required components according to the installation steps. In use, TDOS provides a complete set of tools from the deployment of trusted data links to smart contract development, provides a browser for real-time display of key indicators, provides operation and maintenance tools to maintain nodes, and provides an application square to display TDOS's multi-domain application scenarios. Users can perform specific operations according to the detailed instructions of the corresponding tools and the detailed steps in the use documents.
+[1]: https://pages.github.com
+[2]: https://pages.github.com/themes
+[3]: https://github.com/sighingnow/jekyll-gitbook/fork
+[4]: https://github.com/allejo/jekyll-toc
+[5]: https://github.com/gitbook-plugins/gitbook-plugin-search-pro
+[6]: https://github.com/rouge-ruby/rouge/tree/master/lib/rouge/themes
+[7]: https://analytics.google.com/analytics/web/
+[8]: https://www.cnzz.com/
+[9]: https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview
+[10]: https://github.com/sighingnow/jekyll-gitbook/blob/master/gitbook/custom.css
+[11]: https://discordjs.guide/popular-topics/canvas.html#setting-up-napi-rs-canvas
+[12]: https://rubygems.org/gems/jekyll-remote-theme
+[13]: https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll
+[14]: https://github.com/sighingnow/jekyll-gitbook/blob/master/_config.yml
+[15]: https://jekyllrb.com/docs/collections/
