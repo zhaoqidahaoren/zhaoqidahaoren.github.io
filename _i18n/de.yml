@@ -1,0 +1,170 @@
+---
+global:
+  german: Deutsch
+  english: Englisch
+  choose_language: Wechsle zu
+titles:
+  home: Leitfaden Forschungsdatenmanagement
+  site_title: RUB Forschungsdatenmanagement Wissensdatenbank
+  topnav_title: RUB Wissensdatenbank FDM
+  search: Suche
+  tags:
+    servicesproducts: Dienstleistungen und Produkte
+    resources: Ressourcen
+    getting_started: Erste Schritte
+    community: Gemeinschaft
+    special_layouts: Spezielle Layouts-Seite
+    servicesproducts: "Dienstleistungen und Produkte"
+  training: Training
+  special_layouts: Spezielle Layout-Seite
+  scroll_layout: Scroll Layout
+  a_z_index: 'A-Z Index'
+feedback:
+  site_text: RUB Helpdesk
+  text: Feedback
+  subject_line: Leitfaden Forschungsdatenmanagement
+  submit: Feedback senden
+  email_text_one: Ich habe ein Feedback zur Seite
+  email_text_two: ":"
+tags:
+  getting_started: erste_Schritte
+  resources: Ressourcen
+  servicesproducts: Dienstleistungen_und_Produkte
+  community: Gemeinschaft
+  special_layouts: Spezielle_Layouts
+atoz:
+  home: Leitfaden Forschungsdatenmanagement
+  servicesproducts: Dienstleistungen und Produkte
+  resources: Ressourcen
+  getting_started: Erste Schritte
+  community: Gemeinschaft
+  special_layouts: Spezielle_Layouts
+  scroll_layout: scroll_layout
+sidebar:
+  new_start_here: Neu? Begin hier
+  introduction: Vorstellung
+  ask_for_help: Wie bekomme ich Hilfe
+  servicesproducts: Dienstleistungen und Produkte
+  resources: Ressourcen
+  community: Gemeinschaft
+  layouts: Layouts
+  special_layouts: Spezielle_Layouts
+  shuffle_layout: Shuffle Layout
+include:
+  note: "Hinweis:"
+  important: "Wichtig:"
+  warning: "Warnung:"
+  tip: "Tip:"
+  toc: Inhaltsverzeichnis 
+index:
+  title: Wissensdatenbankkategorien
+  keywords: Wissensdatenbank Homepage
+  contribute: Neue Dokumentation beisteuern
+  description: |
+    "Hinweis: Diese Seite befindet sich in aktiver Entwicklung. Einige Seiten
+    enthalten noch keinen Inhalt und befinden sich entweder in der Erstellung
+    oder warten auf ihre Genehmigung. Wenn es eine Seite gibt, die priorisiert
+    werden soll, erstellen Sie eine <a
+    href="https://git.it-services.ruhr-uni-bochum.de/FDM/ag-fdm.io/issues/new?issuable_template=issue_template_de">Anfrage/Problemmeldung
+    </a>. Seiten, die den vollständigen Inhalt
+    enthalten, wurden überprüft und genehmigt."
+  learn: Erfahren Sie mehr
+  new_start_here:
+    title: Neu? Starten Sie hier.
+    description: Einführungs- und Hintergrundmaterial.
+  resources:
+    title: Ressourcen
+    description: Fragen und Antworten Artikel und Tutorials.
+  products:
+    title: Dienstleistungen und Produkte
+    description: FDM-Unterstützung Ihrer Forschung.
+  community:
+    title: Gemeinschaft
+    description: Beitragen
+layouts:
+  page:
+   summary: Zusammenfassung
+pages:
+  tags:
+    taglogic:
+      text: Die folgenden Seiten und Beiträge sind mit
+      text_two: markiert.
+      page: Seite
+      title: Titel
+      type: Typ
+      excerpt: Exzerpt
+  layouts:
+    shuffle_layout: 
+      title: Shuffle Layout
+      keywords: "Shuffle, Layout"
+      summary: "Dieses Layout zeigt ein Beispiel für ein wissensbasiertes
+               Navigationssystem, bei dem es keine Hierarchie gibt, sondern nur
+               Gruppen von Seiten mit bestimmten Tags."
+      alerts_note: "Der Inhalt dieser Seite wird im PDF nicht gut angezeigt,
+                aber ich habe ihn trotzdem hinzugefügt, damit Sie die Probleme
+                dieses Layouts sehen können, wenn Sie es in PDF einbinden. "
+      buttons:
+        all: Alles
+        getting_started: Erste Schritte
+        formatting: Formatierung
+        publishing: Veröffentlichung
+        content_types: Inhaltstypen
+        single_sourcing: Single-Sourcing
+        special_layouts: Spezielle Layouts
+      panel_headings:
+        getting_started: Erste Schritte
+        formatting: Formatierung
+        publishing: Veröffentlichung
+        content_types: Inhaltstypen
+        single_sourcing: Single-Sourcing
+        special_layouts: Spezielle Layouts
+      panel_body:
+        getting_started: "Wenn Sie in Jekyll einsteigen wollen, sehen Sie sich
+                         die Links in diesem Abschnitt an. Es wird Sie vom
+                         Einsteigs- bis zum zum  Intermediärlevel bringen."
+        formatting: "Diese Themen werden in Formatierungssyntax wie Bilder
+                     und Tabellen, die Sie auf jeder Ihrer Seiten verwenden
+                     werden:"
+        publishing: Wenn Sie Ihre Jekyll-Site erstellen, veröffentlichen und
+                    bereitstellen, sind diese Themen möglicherweise hilfreich.
+        content_types: In diesem Abschnitt werden verschiedene Inhaltstypen und
+                       ihre Verwendung aufgeführt.
+        single_sourcing: Diese Themen behandeln Strategien für Single_Sourcing.
+                    Single-Sourcing bezieht sich auf Strategien zur
+                    Wiederverwendung der gleichen Quelle in verschiedenen
+                    Ausgaben für unterschiedliche Zielgruppen oder Zwecke.
+        special_layouts: Auf diesen Seiten werden spezielle Layouts außerhalb
+                        der herkömmlichen Seiten- und
+                        Inhaltsverzeichnishierarchie hervorgehoben.
+      note: Dies war meistens ein Experiment, um zu
+            sehen, ob ich mich vom hierarchischen TOC lösen und eine
+            andere Art der Anordnung des Inhalts bereitstellen könnte.
+            Dieses Layout ist jedoch etwas problematisch, da Sie während
+            des Anzeigens eines Themas keine anderen Navigationsoptionen
+            auf der Seite durchsuchen können.
+    scroll_layout:
+      title: Scroll Layout
+      atoz: Scroll Layout
+      keywords: json, Scrollen, scrollto, jquery-Plugin
+      summary: "Auf dieser Seite wird gezeigt, wie Sie ein Skript namens
+             ScrollTo integrieren. und welches hier benutzt wird, um
+             Definitionen eines JSON-Codebeispiels mit einer Liste von
+             Definitionen für diesen bestimmten Begriff zu verknüpfen. Das
+             Szenario besteht darin, dass die JSON-Blöcke sehr lang und
+             umfangreich sind und sehr viel Nesting und Subnestring
+             beinhalten, was es für Tabellen unterhalb des JSON schwierig
+             macht, den Begriff in geeigneter Weise zu erklären."
+      alert_note: Dies war hauptsächlich ein Experiment, um zu sehen, ob es
+                  einen besseren Weg gibt, ein langes JSON-Codebeispiel
+                  zu dokumentieren. Ich habe diesen Ansatz in meiner eigenen
+                  Dokumentation nicht verwendet.
+  agfdm:
+    ask_for_help: 
+      title: Wie bekomme ich Hilfe
+      atoz: Wie bekomme ich Hilfe
+      keywords: Kontakt, Gemeinschaft, Hilfe 
+    introduction:
+      title: Vorstellung
+      atoz: Vorstellung
+      summary: 'Einleitung: Was ist FDM?'
+      keywords: AGFDM Orientierung

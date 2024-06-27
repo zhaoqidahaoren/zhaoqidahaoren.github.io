@@ -1,0 +1,18 @@
+<li>
+{% if site.feedback_text %}
+  {% assign feedback_text = site.feedback_text %}
+  {% capture feedback_text %}{% t feedback.site_text %}{% endcapture %}
+{% else %}
+  {% assign feedback_text = "feedback.title" %}
+  {% capture feedback_text %}{% t feedback.text %}{% endcapture %}
+{% endif %}
+
+
+
+{% if site.feedback_link %}
+  <a class="email" title="{% t feedback.submit %}" href="{{site.feedback_link}}">{{feedback_text}}</a>
+{% else %}
+  {% capture site.feedback_subject_line %}{% t feedback.subject_line %}{% endcapture %}
+  <a class="email" title="{% t feedback.submit %}" href="#" onclick="javascript:window.location='mailto:{{site.feedback_email}}?subject={% t feedback.subject_line %} {{feedback_text}}&body={% t feedback.email_text_one %} {% t page.title %} {% t feedback.email_text_two %} ' + window.location.href;"><i class="fa fa-envelope-o"></i> {{feedback_text}}</a>
+{% endif %}
+</li>

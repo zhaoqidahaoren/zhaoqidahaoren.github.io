@@ -1,3 +1,0 @@
-User-agent: *
-Sitemap: https://smccsally.github.io//sitemap.xml
-Disallow: /contact-success/

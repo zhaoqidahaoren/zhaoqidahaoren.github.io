@@ -1,0 +1,53 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% if page.summary %}
+  {% assign page_summary = page.summary %}
+  {% capture page_summary %}{% t page.summary %}{% endcapture %}
+{% endif %}
+<meta name="description" content="{% if page.summary %}{{ page_summary | strip_html | strip_newlines | truncate: 160 }}{% endif %}">
+{% if page.tags %}
+  {% for tag in page.tags %}
+    {% assign ttag = tag %}
+    {% capture ttag %}{% t {{ tag }} %}{% endcapture %}
+    {% assign page_tags = ttag | prepend: page_tags | append: ", " %}
+  {% endfor %}
+{% endif %}
+
+{% for key in page.keywords %}
+  {% assign tkey = key %}
+  {% capture tkey %}{% t {{ key }} %}{% endcapture %}
+  {% assign page_keywords = tkey | prepend: page_keywords | append: ", " %}
+{% endfor %}
+<meta name="keywords" content="{{page_tags}}{% if page.tags %}, {% endif %} {{page_keywords}}">
+<title>{% t {{ page.title }} %} | {% t {{ site.site_title }} %}</title>
+<link rel="stylesheet" href="{{ "/css/syntax.css" | prepend: site.baseurl_root }}">
+
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+<link rel="stylesheet" href="{{ "/css/modern-business.css" | prepend: site.baseurl_root }}">
+<link rel="stylesheet" href="{{ "/css/lavish-bootstrap.css" | prepend: site.baseurl_root }}">
+<link rel="stylesheet" href="{{ "/css/customstyles.css" | prepend: site.baseurl_root }}">
+<link rel="stylesheet" href="{{ "/css/theme-blue.css" | prepend: site.baseurl_root }}">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="{{ "/js/jquery.navgoco.min.js" | prepend: site.baseurl_root }}"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/2.0.0/anchor.min.js"></script>
+<script src="{{ "/js/toc.js" | prepend: site.baseurl_root }}"></script>
+<script src="{{ "/js/customscripts.js" | prepend: site.baseurl_root }}"></script>
+
+<link rel="shortcut icon" href="{{ "/images/favicon.ico"  | prepend: site.baseurl_root }}">
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }} " href="{{ "feed.xml" | prepend: site.baseurl_root | prepend: site.url }}">

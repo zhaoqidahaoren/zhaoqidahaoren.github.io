@@ -1,0 +1,9 @@
+<li>
+  {% if site.lang == "en" %}
+    {% capture link1 %}{{ site.baseurl_root }}de{{ page.url}}{% endcapture %}
+    <a class="email" title="{% t global.choose_language %} {% t global.german %}" href="{{ link1 }}" >{% t global.german %}</a>
+  {% elsif site.lang == "de" %}
+    {% capture link2 %}{{ site.baseurl_root }}{{ page.url  }}{% endcapture %}
+    <a class="email" title="{% t global.choose_language %} {% t global.english %}" href="{{ link2 }}" >{% t global.english %}</a>
+  {% endif %}
+</li>
