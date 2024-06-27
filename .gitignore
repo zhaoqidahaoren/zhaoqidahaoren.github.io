@@ -1,27 +1,10 @@
-*~
-~*
-*.diff
-*.patch
-*.bak
-.DS_Store
-*.swp
-*.swo
-*.log
-*.log.*
-
-/.vscode/
-
-node_modules/
-.sass-cache/
-
-/.bundle/
-/vendor/bundle
-*.gem
-
-yarn.lock
-package-lock.json
-Gemfile.lock
-
-_site/
-.jekyll-metadata
-.jekyll-cache/
+# https://git-scm.com/docs/gitignore
+# https://help.github.com/articles/ignoring-files
+# Example .gitignore files: https://github.com/github/gitignore
+/bower_components/
+/node_modules/
+/_site/
+/.sass-cache/
+/.jekyll-metadata
+/.brackets.json
+/Gemfile
