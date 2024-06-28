@@ -1,110 +1,161 @@
-<p align="right">
-    <a href="https://badge.fury.io/rb/just-the-docs"><img src="https://badge.fury.io/rb/just-the-docs.svg" alt="Gem version"></a> <a href="https://github.com/just-the-docs/just-the-docs/actions/workflows/ci.yml"><img src="https://github.com/just-the-docs/just-the-docs/actions/workflows/ci.yml/badge.svg" alt="CI Build status"></a> <a href="https://app.netlify.com/sites/just-the-docs/deploys"><img src="https://api.netlify.com/api/v1/badges/9dc0386d-c2a4-4077-ad83-f02c33a6c0ca/deploy-status" alt="Netlify Status"></a>
-</p>
-<br><br>
-<p align="center">
-    <h1 align="center">Just the Docs</h1>
-    <p align="center">A modern, highly customizable, and responsive Jekyll theme for documentation with built-in search.<br>Easily hosted on GitHub Pages with few dependencies.</p>
-    <p align="center"><strong><a href="https://just-the-docs.com/">See it in action!</a></strong></p>
-    <br><br><br>
-</p>
+# Jekyll Doc Theme
 
-<p align="center">A video walkthrough of various Just the Docs features</p>
+Go to [the website](https://aksakalli.github.io/jekyll-doc-theme/) for detailed information and demo.
 
-https://user-images.githubusercontent.com/85418632/211225192-7e5d1116-2f4f-4305-bb9b-437fe47df071.mp4
+## Running locally
 
-## Installation
+You need Ruby and gem before starting, then:
 
-### Use the template
+```bash
+# install bundler
+gem install bundler
 
-The [Just the Docs Template] provides the simplest, quickest, and easiest way to create a new website that uses the Just the Docs theme. To get started with creating a site, just click "[use the template]"!
+# clone the project
+git clone https://github.com/aksakalli/jekyll-doc-theme.git
+cd jekyll-doc-theme
 
-Note: To use the theme, you do ***not*** need to clone or fork the [Just the Docs repo]! You should do that only if you intend to browse the theme docs locally, contribute to the development of the theme, or develop a new theme based on Just the Docs.
+# install dependencies
+bundle install
 
-You can easily set the site created by the template to be published on [GitHub Pages] – the [template README] file explains how to do that, along with other details.
-
-If [Jekyll] is installed on your computer, you can also build and preview the created site *locally*. This lets you test changes before committing them, and avoids waiting for GitHub Pages.[^2] And you will be able to deploy your local build to a different platform than GitHub Pages.
-
-More specifically, the created site:
-
-- uses a gem-based approach, i.e. uses a `Gemfile` and loads the `just-the-docs` gem
-- uses the [GitHub Pages / Actions workflow] to build and publish the site on GitHub Pages
-
-Other than that, you're free to customize sites that you create with the template, however you like. You can easily change the versions of `just-the-docs` and Jekyll it uses, as well as adding further plugins.
-
-### Use RubyGems
-
-Alternatively, you can install the theme as a Ruby Gem, without creating a new site.
-
-Add this line to your Jekyll site's `Gemfile`:
-
-```ruby
-gem "just-the-docs"
+# run jekyll with dependencies
+bundle exec jekyll serve
 ```
 
-And add this line to your Jekyll site's `_config.yml`:
+### Theme Assets
 
-```yaml
-theme: just-the-docs
+As of the move to support [Github Pages](https://pages.github.com/) a number of files have been relocated to the `/asset` folder.
+- css/
+- fonts/
+- img/
+- js/
+- 404.html
+- allposts.html
+- search.json
+
+## Docker
+
+Alternatively, you can deploy it using the multi-stage [Dockerfile](Dockerfile)
+that serves files from Nginx for better performance in production.
+
+Build the image for your site's `JEKYLL_BASEURL`:
+
+```
+docker build --build-arg JEKYLL_BASEURL="/your-base/url" -t jekyll-doc-theme .
 ```
 
-And then execute:
+(or leave it empty for root: `JEKYLL_BASEURL=""`) and serve it:
 
-    $ bundle
+```
+docker run -p 8080:80 jekyll-doc-theme
+```
 
-Or install it yourself as:
+## Github Pages
 
-    $ gem install just-the-docs
+The theme is also available to [Github Pages](https://pages.github.com/) by making use of the [Remote Theme](https://github.com/benbalter/jekyll-remote-theme) plugin:
 
-Alternatively, you can run it inside Docker while developing your site
+**Gemfile**
+```
+# If you want to use GitHub Pages, remove the "gem "jekyll"" above and
+# uncomment the line below. To upgrade, run `bundle update github-pages`.
+gem "github-pages", group: :jekyll_plugins
+```
 
-    $ docker-compose up
+**_config.yml**
+```
+# Configure the remote_theme plugin with the gh-pages branch
+# or the specific tag
+remote_theme: aksakalli/jekyll-doc-theme@gh-pages   
+```
 
-## Usage
+### Theme Assets
 
-[View the documentation][Just the Docs] for usage information.
+Files from your project will override any theme file with the same name.  For example, the most comment use case for this, would be to modify your sites theme or colors.   To do this, the following steps should be taken:
 
-## Contributing
+1) Copy the contents of the `aksakalli/jekyll-doc-theme/asset/css/main.scss` to your own project (maintaining folder structure)
+2) Modify the variables you wish to use prior to the import statements, for example:
 
-Bug reports, proposals of new features, and pull requests are welcome on GitHub at https://github.com/just-the-docs/just-the-docs. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+```
+// Bootstrap variable overrides
+$grid-gutter-width: 30px !default;
+$container-desktop: (900px + $grid-gutter-width) !default;
+$container-large-desktop: (900px + $grid-gutter-width) !default;
 
-### Submitting code changes:
+@import // Original import statement
+  {% if site.bootwatch %}
+    "bootswatch/{{site.bootwatch | downcase}}/variables",
+  {% endif %}
 
-- Submit an [Issue](https://github.com/just-the-docs/just-the-docs/issues) that motivates the changes, using the appropriate template
-- Discuss the proposed changes with other users and the maintainers
-- Open a [Pull Request](https://github.com/just-the-docs/just-the-docs/pulls)
-- Ensure all CI tests pass
-- Provide instructions to check the effect of the changes
-- Await code review
+  "bootstrap",
 
-### Design and development principles of this theme:
+  {% if site.bootwatch %}
+    "bootswatch/{{site.bootwatch | downcase}}/bootswatch",
+  {% endif %}
 
-1. As few dependencies as possible
-2. No build script needed
-3. First class mobile experience
-4. Make the content shine
+  "syntax-highlighting",
+  "typeahead",
+  "jekyll-doc-theme"
+;
 
-## Development
+// More custom overrides.
+```
 
-To set up your environment to develop this theme: fork this repo, the run `bundle install` from the root directory.
+3) Import or override any other theme styles after the standard imports
 
-A modern [devcontainer configuration](https://code.visualstudio.com/docs/remote/containers) for VSCode is included.
+## Projects using Jekyll Doc Theme
 
-Your theme is set up just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
-
-When this theme is released, only the files in `_layouts`, `_includes`, and `_sass` tracked with Git will be included in the gem.
+* http://teavm.org/
+* https://ogb.stanford.edu/
+* https://griddb.org/
+* https://su2code.github.io/
+* https://contextmapper.org/
+* https://launchany.github.io/mvd-template/
+* https://knowit.github.io/kubernetes-workshop/
+* https://rec.danmuji.org/
+* https://nethesis.github.io/icaro/
+* http://ai.cs.ucl.ac.uk/
+* http://tizonia.org
+* https://lakka-switch.github.io/documentation/
+* https://cs.anu.edu.au/cybersec/issisp2018/
+* http://www.channotation.org/
+* http://nemo.apache.org/
+* https://csuf-acm.github.io/
+* https://extemporelang.github.io/
+* https://media-ed-online.github.io/intro-web-dev-2018spr/
+* https://midlevel.github.io/MLAPI/
+* https://pulp-platform.github.io/ariane/docs/home/
+* https://koopjs.github.io/
+* https://developer.apiture.com/
+* https://contextmapper.github.io/
+* https://www.bruttin.com/CosmosDbExplorer/
+* http://mosaic-lopow.github.io/dash7-ap-open-source-stack/
+* http://www.vstream.ml/
+* http://docs.fronthack.com/
+* https://repaircafeportsmouth.org.uk/
+* http://brotherskeeperkenya.com/
+* https://hschne.at/Fluentast/
+* https://zoe-analytics.eu/
+* https://uli.kmz-brno.cz/
+* https://lime.software/
+* https://weft.aka.farm
+* https://microros.github.io/
+* https://citystoriesucla.github.io/citystories-LA-docs
+* http://lessrt.org/
+* http://kivik.io/
+* https://www.iot-kit.nl/
+* http://justindietz.com/
+* https://universalsplitscreen.github.io/
+* https://docs.oneflowcloud.com/
+* https://actlist.silentsoft.org/
+* https://teevid.github.io
+* https://developer.ipums.org
+* https://osmpersia.github.io (right-to-left)
+* https://ecmlpkdd2019.org
+* https://idle.land
+* https://mqless.com
+* https://muict-seru.github.io/
+* https://www.invoice-x.org
+* https://www.devops.geek.nz
 
 ## License
 
-The theme is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
-[^2]: [It can take up to 10 minutes for changes to your site to publish after you push the changes to GitHub](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll#creating-your-site).
-
-[Jekyll]: https://jekyllrb.com
-[Just the Docs Template]: https://just-the-docs.github.io/just-the-docs-template/
-[Just the Docs]: https://just-the-docs.com
-[Just the Docs repo]: https://github.com/just-the-docs/just-the-docs
-[GitHub Pages]: https://pages.github.com/
-[Template README]: https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md
-[GitHub Pages / Actions workflow]: https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/
-[use the template]: https://github.com/just-the-docs/just-the-docs-template/generate
+Released under [the MIT license](LICENSE).

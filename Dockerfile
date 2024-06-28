@@ -1,12 +1,26 @@
-FROM ruby:2.7
+ARG JEKYLL_BASEURL=''
 
-ENV LC_ALL C.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US.UTF-8
+####################################
 
-WORKDIR /usr/src/app
+FROM ruby:alpine as builder
 
-COPY Gemfile just-the-docs.gemspec ./
-RUN gem install bundler && bundle install
+RUN apk add --no-cache make build-base
+RUN gem install bundler
 
-EXPOSE 4000
+WORKDIR /jekyll
+ADD Gemfile Gemfile.lock ./
+RUN bundle install
+
+ADD . .
+ARG JEKYLL_BASEURL
+RUN bundle exec jekyll build --baseurl $JEKYLL_BASEURL
+
+####################################
+
+FROM nginx:alpine
+
+ARG JEKYLL_BASEURL
+COPY --from=builder /jekyll/_site /usr/share/nginx/html/$JEKYLL_BASEURL
+COPY nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
