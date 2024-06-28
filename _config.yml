@@ -32,9 +32,14 @@ plugins:
   - jekyll-feed
   - jekyll-polyglot
 
-languages: ["en","zh"]
-
-default_lang: "en"
+polyglot:
+  languages:
+    - name: English
+      link: en
+      flag: flag-icon-gb
+    - name: 中文
+      link: zh
+      flag: flag-icon-cn
 
 exclude:
   - Gemfile
