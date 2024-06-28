@@ -3,30 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="55c28b4e-ca00-4bd9-b15e-49746de2fe15" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/404.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/_docs/_defaults.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/_docs/contact-syncing/facebook.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/_docs/contact-syncing/phone.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/_docs/devices/android.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/_docs/devices/ios.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/_docs/media/documents.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/_docs/media/images.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/_docs/media/video.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/_posts/2016-01-12-media-support.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/_posts/2016-02-05-general-fixes-and-improvements.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/_posts/_defaults.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/changelog.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/index.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/en/search.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/zh/404.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/zh/_posts/2016-01-12-media-support.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/zh/_posts/2016-02-05-general-fixes-and-improvements.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/zh/_posts/_defaults.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/zh/changelog.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/zh/index.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_i18n/zh/search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/default.html" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/default.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +50,7 @@
       <option name="presentableId" value="Default" />
       <updated>1719391209378</updated>
       <workItem from="1719391210831" duration="9653000" />
-      <workItem from="1719474245857" duration="16094000" />
+      <workItem from="1719474245857" duration="17083000" />
     </task>
     <servers />
   </component>
