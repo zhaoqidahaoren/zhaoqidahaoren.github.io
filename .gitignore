@@ -1,6 +1,2 @@
 _site
 .sass-cache
-.jekyll-cache
-*.gem
-.bundle
-vendor/bundle
