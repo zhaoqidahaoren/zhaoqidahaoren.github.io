@@ -30,6 +30,11 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-feed
+  - jekyll-polyglot
+
+languages: ["en","zh"]
+
+default_lang: "en"
 
 exclude:
   - Gemfile

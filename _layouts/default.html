@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="{{ site.lang | default: site.default_lang }}">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,7 +31,10 @@
 				{{ site.title }}
 				<button type="button" class="open-nav" id="open-nav"></button>
 			</h1>
-
+			<nav>
+				<a href="{{ site.baseurl }}/en/">English</a>
+				<a href="{{ site.baseurl }}/zh/">中文</a>
+			</nav>
 			<form action="{{ site.baseurl }}/search/" method="get">
 				<input type="text" name="q" id="search-input" placeholder="Search" autofocus>
 				<input type="submit" value="Search" style="display: none;">
