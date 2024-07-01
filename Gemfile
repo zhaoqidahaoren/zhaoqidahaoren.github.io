@@ -1,12 +1,17 @@
 source 'https://rubygems.org'
+gemspec
 
-gem 'jekyll', '3.8.4'
-
-group :jekyll_plugins do
-  gem 'jekyll-feed', '0.11.0'
-  gem 'jekyll-seo-tag', '2.5.0'
-  gem 'jekyll-sitemap', '1.2.0'
-  gem 'jekyll-polyglot'
+gem 'rake'
+group :test do
+  gem 'minitest', '>= 5.16.3'
+  gem 'nokogiri', '>= 1.14.3'
+  gem 'rspec', '>= 3.11.0'
+  gem 'rspec-mocks', '>= 3.11.0'
+  gem 'rspec_junit_formatter', '>= 0.6.0'
+  gem 'rubocop', '>= 1.63.0'
 end
 
-gem "webrick", "~> 1.8"
+gem 'jekyll'
+gem 'jekyll-paginate'
+gem 'jekyll-redirect-from'
+gem "webrick", ">= 1.7"
