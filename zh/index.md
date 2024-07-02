@@ -4,12 +4,9 @@ layout: default
 lang: zh
 ---
 
-This is the **Edition** template from [CloudCannon](http://cloudcannon.com/).
-**Edition** is perfect for documenting your product, application or service.
-It's populated with example content to give you some ideas.
+这是 CloudCannon 的 Edition 模板。Edition 非常适合记录您的产品、应用程序或服务。它包含示例内容，可为您提供一些想法。
 
-ChatApp is a fictional chat application for sending messages and media to others.
-Teams and friend groups would use ChatApp to stay up to date if it existed.
+ChatApp 是一个虚构的聊天应用程序，用于向其他人发送消息和媒体。如果存在 ChatApp，团队和朋友组将使用 ChatApp 来保持最新状态。
 
 > [Sign up](http://example.com/signup) or learn more about ChatApp at [example.com](http://example.com/).
 
