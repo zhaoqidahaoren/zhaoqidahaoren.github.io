@@ -79,10 +79,8 @@
 
 		<ul>
 			<li class="nav-item top-level">
-				{% assign new_lang = page.lang == 'zh' ? 'en' : 'zh' ? 'en'%}
-				{% assign new_url = page.url | remove: '/zh' | remove: '/en' %}
-				<a href="{{ site.baseurl }}/zh{{ new_url }}">
-					{% if page.lang == 'zh' %}English{% else %}中文{% endif %}
+				<a href="{{ site.baseurl }}/zh">
+					中文
 				</a>
 			</li>
 		</ul>
