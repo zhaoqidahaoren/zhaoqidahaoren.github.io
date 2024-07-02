@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="{{ site.lang | default: site.default_lang }}">
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -79,7 +79,7 @@
 
 		<ul>
 			<li class="nav-item top-level">
-				{% assign new_lang = page.lang == 'en' ? 'en' : 'zh'%}
+				{% assign new_lang = page.lang == 'zh' ? 'en' : 'zh'%}
 				{% assign new_url = page.url | remove: '/zh' | remove: '/en' %}
 				<a href="{{ site.baseurl }}/{{ new_lang }}{{ new_url }}">
 					{% if page.lang == 'zh' %}English{% else %}中文{% endif %}
