@@ -3,7 +3,7 @@
 
 title: Edition Template
 url: "https://long-pig.cloudvent.net"
-baseurl: "https://zhaoqidahaoren.github.io"
+baseurl:
 google_analytics_key:
 show_full_navigation: true
 
@@ -32,10 +32,14 @@ plugins:
   - jekyll-feed
   - jekyll-polyglot
 
-languages: ["en", "zh"]
-default_lang: "en"
-exclude_from_localization: ["images", "css", "scripts", "_docs"]
-
+polyglot:
+  languages:
+    - name: English
+      link: en
+      flag: flag-icon-gb
+    - name: 中文
+      link: zh
+      flag: flag-icon-cn
 
 exclude:
   - Gemfile
@@ -44,16 +48,10 @@ exclude:
   - LICENCE
 
 collections:
-  en_docs:
+  docs:
     title: Documentation
+    permalink: /:path/
     output: true
-    permalink: /en/docs/:path/
-    source: en/_docs
-  zh_docs:
-    title: 文档
-    output: true
-    permalink: /zh/docs/:path/
-    source: zh/_docs
 
 defaults:
   -

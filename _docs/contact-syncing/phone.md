@@ -1,9 +1,7 @@
 ---
-title: 手机
-category: 联系人同步
+title: Phone
+category: Contact Syncing
 order: 2
-layout: default
-lang: zh
 ---
 
 Sync your phone contacts with ChatApp. ChatApp saves your phone contacts and adds anyone with an email address to your contact list!
