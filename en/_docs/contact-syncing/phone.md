@@ -3,7 +3,7 @@ title: phone
 category: Contact Syncing
 order: 2
 layout: default
-lang: zh
+lang: en
 permalink: /en/docs/phone/
 ---
 

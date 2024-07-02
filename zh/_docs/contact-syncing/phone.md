@@ -1,9 +1,9 @@
 ---
-title: Phone
-category: Contact Syncing
+title: 手机
+category: 联系人同步
 order: 2
 layout: default
-lang: en
+lang: zh
 permalink: /zh/docs/phone/
 ---
 

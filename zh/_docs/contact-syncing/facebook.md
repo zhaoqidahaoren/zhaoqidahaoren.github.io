@@ -1,6 +1,6 @@
 ---
 title: 脸书
-category: Contact Syncing
+category: 联系人同步
 order: 1
 layout: default
 lang: zh
