@@ -48,10 +48,12 @@ collections:
     title: Documentation
     output: true
     permalink: /en/docs/:path/
+    source: en/_docs
   zh_docs:
     title: 文档
     output: true
     permalink: /zh/docs/:path/
+    source: zh/_docs
 
 defaults:
   -
