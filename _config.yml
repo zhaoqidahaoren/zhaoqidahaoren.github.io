@@ -3,7 +3,7 @@
 
 title: Edition Template
 url: "https://long-pig.cloudvent.net"
-baseurl:
+baseurl: "https://zhaoqidahaoren.github.io/"
 google_analytics_key:
 show_full_navigation: true
 
@@ -47,7 +47,7 @@ collections:
   en_docs:
     title: Documentation
     output: true
-    permalink: /en/docs/  :path/
+    permalink: /en/docs/:path/
   zh_docs:
     title: 文档
     output: true
