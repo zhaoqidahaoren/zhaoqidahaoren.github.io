@@ -4,7 +4,6 @@ category: 联系人同步
 order: 1
 layout: default
 lang: zh
-permalink: /zh/docs/contact-syncing/facebook/
 ---
 
 将您的 Facebook 联系人与 ChatApp 同步。任何拥有 ChatApp 帐户的 Facebook 好友都会自动添加到您的联系人列表中！

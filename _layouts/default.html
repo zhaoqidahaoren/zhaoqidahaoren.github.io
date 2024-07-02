@@ -33,7 +33,9 @@
 
 	<!-- 打印 page.lang 和 docs 的值 -->
 	<p>Current page language: {{ page.lang }}</p>
-	<p>Docs collection: {{ site.en_docs }}</p>
+	<p>Collections: {{ site.collections }}</p>
+	<p>EN docs collection: {{ site.en_docs }}</p>
+	<p>ZH docs collection: {{ site.zh_docs }}</p>
 
 	<form action="{{ site.baseurl }}/{{ page.lang | default: site.default_lang }}/search/" method="get">
 		<input type="text" name="q" id="search-input" placeholder="{% if page.lang == 'zh' %}搜索{% else %}Search{% endif %}" autofocus>
