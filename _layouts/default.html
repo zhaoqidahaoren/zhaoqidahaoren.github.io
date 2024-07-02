@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html lang="zh">
+<html lang="{{ page.lang | default: site.default_lang }}">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,10 +29,6 @@
 		<a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/images/emblem.svg" width="40" height="40" alt="{{ site.title }} logo"></a>
 		{{ site.title }}
 		<button type="button" class="open-nav" id="open-nav"></button>
-		<!--				<nav>-->
-		<!--					<a href="{{ site.baseurl }}/en">English</a>-->
-		<!--					<a href="{{ site.baseurl }}/zh">中文</a>-->
-		<!--				</nav>-->
 	</h1>
 
 	<form action="{{ site.baseurl }}/{{ page.lang | default: site.default_lang }}/search/" method="get">
@@ -44,13 +39,14 @@
 	<nav {% if site.show_full_navigation %}class="full-navigation"{% endif %}>
 		<ul>
 			<li class="nav-item top-level {% if page.url == '/' %}current{% endif %}">
-				{% assign home = site.html_pages | where: 'url', '/' | first %}
-				<a href="{{ site.baseurl }}/zh/">{{ home.title }}</a>
+				{% assign home = site.html_pages | where: 'lang', page.lang | where: 'url', '/' | first %}
+				<a href="{{ site.baseurl }}{{ home.url }}">{{ home.title }}</a>
 			</li>
 		</ul>
 
 		<ul>
-			{% assign grouped = site.en_docs | group_by: 'category' %}
+			{% assign docs = site.collections | where: 'label', page.lang | first %}
+			{% assign grouped = docs.docs | group_by: 'category' %}
 			{% for group in grouped %}
 			<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
 				{% assign items = group.items | sort: 'order' %}
@@ -66,17 +62,10 @@
 			{% endfor %}
 		</ul>
 
-<!--		<ul>-->
-<!--			<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">-->
-<!--				{% assign changelog = site.html_pages | where: 'lang', page.lang | where: 'url', '/changelog/' | first %}-->
-<!--				<a href="{{ site.baseurl }}/{{ page.lang | default: site.default_lang }}/changelog/">{{ changelog.title }}</a>-->
-<!--			</li>-->
-<!--		</ul>-->
-
 		<!-- 语言切换链接 -->
 		<ul>
 			<li class="nav-item top-level">
-				{% assign new_lang = page.lang == 'zh' ? 'en' : 'zh'%}
+				{% assign new_lang = page.lang == 'zh' ? 'en' : 'zh' %}
 				<a href="{{ site.baseurl }}/{{ new_lang }}">
 					{% if page.lang == 'zh' %}English{% else %}中文{% endif %}
 				</a>

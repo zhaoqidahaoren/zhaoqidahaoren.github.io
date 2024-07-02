@@ -52,10 +52,6 @@ collections:
     title: 文档
     output: true
     permalink: /zh/:path/
-  docs:
-    title: Documentation
-    permalink: /:path/
-    output: true
 
 defaults:
   -
