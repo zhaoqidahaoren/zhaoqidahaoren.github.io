@@ -43,9 +43,9 @@
 
 	<nav {% if site.show_full_navigation %}class="full-navigation"{% endif %}>
 		<ul>
-			<li class="nav-item top-level {% if page.url == '/' or page.url == '/index.html' %}current{% endif %}">
-				{% assign home = site.html_pages | where: 'lang', page.lang | where: 'url', '/' | first %}
-				<a href="{{ site.baseurl }}/{{ page.lang | default: site.default_lang }}/">{{ home.title }}</a>
+			<li class="nav-item top-level {% if page.url == '/' %}current{% endif %}">
+				{% assign home = site.html_pages | where: 'url', '/' | first %}
+				<a href="{{ site.baseurl }}/en/">{{ home.title }}</a>
 			</li>
 		</ul>
 
@@ -54,17 +54,18 @@
 			{% for group in grouped %}
 			<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
 				{% assign items = group.items | sort: 'order' %}
-				<a href="{{ site.baseurl }}/zh{{ items.first.url }}">{{ group.name }}</a>
+				<a href="{{ site.baseurl }}/en/{{ items.first.url }}">{{ group.name }}</a>
 				<ul>
 					{% for item in items %}
 					<li class="nav-item {% if item.url == page.url %}current{% endif %}">
-						<a href="{{ site.baseurl }}/zh{{ item.url }}">{{ item.title }}</a>
+						<a href="{{ site.baseurl }}/en/{{ item.url }}">{{ item.title }}</a>
 					</li>
 					{% endfor %}
 				</ul>
 			</li>
 			{% endfor %}
 		</ul>
+
 		<ul>
 			<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">
 				{% assign changelog = site.html_pages | where: 'lang', page.lang | where: 'url', '/changelog/' | first %}
