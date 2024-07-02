@@ -31,6 +31,10 @@
 		<button type="button" class="open-nav" id="open-nav"></button>
 	</h1>
 
+	<!-- 打印 page.lang 和 docs 的值 -->
+	<p>Current page language: {{ page.lang }}</p>
+	<p>Docs collection: {{ docs }}</p>
+
 	<form action="{{ site.baseurl }}/{{ page.lang | default: site.default_lang }}/search/" method="get">
 		<input type="text" name="q" id="search-input" placeholder="{% if page.lang == 'zh' %}搜索{% else %}Search{% endif %}" autofocus>
 		<input type="submit" value="Search" style="display: none;">
@@ -65,28 +69,6 @@
 			</li>
 			{% endfor %}
 		</ul>
-
-<!--		<ul>-->
-<!--			{% if page.lang == 'en' %}-->
-<!--			{% assign docs = site.en_docs %}-->
-<!--			{% elsif page.lang == 'zh' %}-->
-<!--			{% assign docs = site.zh_docs %}-->
-<!--			{% endif %}-->
-<!--			{% assign grouped = docs | group_by_exp: "doc", "doc.path | split: '/' | slice: -2, 1" %}-->
-<!--			{% for group in grouped %}-->
-<!--			<li class="nav-item top-level {% if group.name == page.url | split: '/' | slice: -2, 1 %}current{% endif %}">-->
-<!--				<a href="#">{{ group.name | capitalize }}</a>-->
-<!--				<ul>-->
-<!--					{% assign items = group.items | sort: 'order' %}-->
-<!--					{% for item in items %}-->
-<!--					<li class="nav-item {% if item.url == page.url %}current{% endif %}">-->
-<!--						<a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a>-->
-<!--					</li>-->
-<!--					{% endfor %}-->
-<!--				</ul>-->
-<!--			</li>-->
-<!--			{% endfor %}-->
-<!--		</ul>-->
 
 		<!-- 语言切换链接 -->
 		<ul>
