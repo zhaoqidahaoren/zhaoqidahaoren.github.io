@@ -76,9 +76,7 @@
 		<!-- 语言切换链接 -->
 		<ul>
 			<li class="nav-item top-level">
-				{% assign new_lang = page.lang == 'zh' ? 'en' : 'zh' %}
-				{% assign new_url = page.url | remove: '/zh' | remove: '/en' %}
-				<a href="{{ site.baseurl }}/zh{{ new_url }}">
+				<a href="{{ site.baseurl }}/zh">
 					{% if page.lang == 'zh' %}English{% else %}中文{% endif %}
 				</a>
 			</li>
