@@ -32,14 +32,10 @@ plugins:
   - jekyll-feed
   - jekyll-polyglot
 
-polyglot:
-  languages:
-    - name: English
-      link: en
-      flag: flag-icon-gb
-    - name: 中文
-      link: zh
-      flag: flag-icon-cn
+languages: ["en", "zh"]
+default_lang: "en"
+exclude_from_localization: ["images", "css", "scripts", "_docs"]
+
 
 exclude:
   - Gemfile
@@ -48,10 +44,12 @@ exclude:
   - LICENCE
 
 collections:
-  docs:
-    title: Documentation
-    permalink: /:path/
+  en_docs:
     output: true
+    permalink: /en/docs/:path/
+  zh_docs:
+    output: true
+    permalink: /zh/docs/:path/
 
 defaults:
   -

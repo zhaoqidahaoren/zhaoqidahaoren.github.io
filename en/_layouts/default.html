@@ -50,7 +50,13 @@
 		</ul>
 
 		<ul>
-			{% assign grouped =  where: 'lang', page.lang | site.docs | group_by: 'category' %}
+			{% if page.lang == 'zh' %}
+			{% assign docs = site.zh_docs %}
+			{% else %}
+			{% assign docs = site.en_docs %}
+			{% endif %}
+
+			{% assign grouped = docs | group_by: 'category' %}
 			{% for group in grouped %}
 			<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
 				{% assign items = group.items | sort: 'order' %}
@@ -65,7 +71,6 @@
 			</li>
 			{% endfor %}
 		</ul>
-
 		<ul>
 			<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">
 				{% assign changelog = site.html_pages | where: 'lang', page.lang | where: 'url', '/changelog/' | first %}
