@@ -50,7 +50,7 @@
 		</ul>
 
 		<ul>
-			{% assign grouped = site.docs | where: 'lang', page.lang | group_by: 'category' %}
+			{% assign grouped =  where: 'lang', page.lang | site.docs | group_by: 'category' %}
 			{% for group in grouped %}
 			<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
 				{% assign items = group.items | sort: 'order' %}
