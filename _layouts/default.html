@@ -30,10 +30,10 @@
 				<a href="{{ site.baseurl }}/"><img src="{{ site.baseurl }}/images/emblem.svg" width="40" height="40" alt="{{ site.title }} logo"></a>
 				{{ site.title }}
 				<button type="button" class="open-nav" id="open-nav"></button>
-				<nav>
-					<a href="{{ site.baseurl }}/en">English</a>
-					<a href="{{ site.baseurl }}/zh">中文</a>
-				</nav>
+<!--				<nav>-->
+<!--					<a href="{{ site.baseurl }}/en">English</a>-->
+<!--					<a href="{{ site.baseurl }}/zh">中文</a>-->
+<!--				</nav>-->
 			</h1>
 
 			<form action="{{ site.baseurl }}/search/" method="get">
@@ -48,43 +48,43 @@
 <!--						<a href="{{ site.baseurl }}/{{ page.lang }}/">{{ home.title }}</a>-->
 <!--					</li>-->
 <!--				</ul>-->
-				<ul>
-					{% assign grouped = site.docs | group_by: 'category' %}
-					{% for group in grouped %}
-					<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
-						{% assign items = group.items | sort: 'order' %}
-						<a href="{{ site.baseurl }}{{ items.first.url }}">{{ group.name }}</a>
-						<ul>
-							{% for item in items %}
-							<li class="nav-item {% if item.url == page.url %}current{% endif %}"><a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></li>
-							{% endfor %}
-						</ul>
-					</li>
-					{% endfor %}
-				</ul>
 <!--				<ul>-->
-<!--					{% assign grouped = site.docs | where: 'lang', page.lang | group_by: 'category' %}-->
+<!--					{% assign grouped = site.docs | group_by: 'category' %}-->
 <!--					{% for group in grouped %}-->
 <!--					<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">-->
 <!--						{% assign items = group.items | sort: 'order' %}-->
-<!--						<a href="{{ site.baseurl }}/{{ page.lang }}{{ items.first.url }}">{{ group.name }}</a>-->
+<!--						<a href="{{ site.baseurl }}{{ items.first.url }}">{{ group.name }}</a>-->
 <!--						<ul>-->
 <!--							{% for item in items %}-->
-<!--							<li class="nav-item {% if item.url == page.url %}current{% endif %}">-->
-<!--								<a href="{{ site.baseurl }}/{{ page.lang }}{{ item.url }}">{{ item.title }}</a>-->
-<!--							</li>-->
+<!--							<li class="nav-item {% if item.url == page.url %}current{% endif %}"><a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></li>-->
 <!--							{% endfor %}-->
 <!--						</ul>-->
 <!--					</li>-->
 <!--					{% endfor %}-->
 <!--				</ul>-->
+				<ul>
+					{% assign grouped = site.docs | where: 'lang', page.lang | group_by: 'category' %}
+					{% for group in grouped %}
+					<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
+						{% assign items = group.items | sort: 'order' %}
+						<a href="{{ site.baseurl }}/{{ page.lang }}{{ items.first.url }}">{{ group.name }}</a>
+						<ul>
+							{% for item in items %}
+							<li class="nav-item {% if item.url == page.url %}current{% endif %}">
+								<a href="{{ site.baseurl }}/{{ page.lang }}{{ item.url }}">{{ item.title }}</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</li>
+					{% endfor %}
+				</ul>
 
-<!--				<ul>-->
-<!--					<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">-->
-<!--						{% assign changelog = site.html_pages | where: 'lang', page.lang | where: 'url', '/changelog/' | first %}-->
-<!--						<a href="{{ site.baseurl }}/{{ page.lang }}/changelog/">{{ changelog.title }}</a>-->
-<!--					</li>-->
-<!--				</ul>-->
+				<ul>
+					<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">
+						{% assign changelog = site.html_pages | where: 'lang', page.lang | where: 'url', '/changelog/' | first %}
+						<a href="{{ site.baseurl }}/{{ page.lang }}/changelog/">{{ changelog.title }}</a>
+					</li>
+				</ul>
 			</nav>
 		</header>
 
