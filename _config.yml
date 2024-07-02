@@ -45,11 +45,17 @@ exclude:
 
 collections:
   en_docs:
+    title: Documentation
     output: true
-    permalink: /en/docs/:path/
+    permalink: /en/docs/  :path/
   zh_docs:
+    title: 文档
     output: true
     permalink: /zh/docs/:path/
+  docs:
+    title: Documentation
+    permalink: /:path/
+    output: true
 
 defaults:
   -
