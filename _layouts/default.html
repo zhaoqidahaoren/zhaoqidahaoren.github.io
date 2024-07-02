@@ -45,14 +45,21 @@
 		</ul>
 
 		<ul>
-			{% assign grouped = site.zh_docs | group_by: 'category' %}
+			{% if page.lang == 'en' %}
+			{% assign docs = site.en_docs %}
+			{% elsif page.lang == 'zh' %}
+			{% assign docs = site.zh_docs %}
+			{% endif %}
+			{% assign grouped = docs | group_by_exp: "doc", "doc.path | split: '/' | slice: -2, 1" %}
 			{% for group in grouped %}
-			<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
-				{% assign items = group.items | sort: 'order' %}
-				<a href="{{ site.baseurl }}{{ items.first.url }}">{{ group.name }}</a>
+			<li class="nav-item top-level {% if group.name == page.url | split: '/' | slice: -2, 1 %}current{% endif %}">
+				<a href="#">{{ group.name | capitalize }}</a>
 				<ul>
+					{% assign items = group.items | sort: 'order' %}
 					{% for item in items %}
-					<li class="nav-item {% if item.url == page.url %}current{% endif %}"><a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></li>
+					<li class="nav-item {% if item.url == page.url %}current{% endif %}">
+						<a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a>
+					</li>
 					{% endfor %}
 				</ul>
 			</li>
@@ -84,9 +91,13 @@
 		<!-- 语言切换链接 -->
 		<ul>
 			<li class="nav-item top-level">
-				{% assign new_lang = page.lang == 'zh' ? 'en' : 'zh' %}
+				{% if page.lang == 'zh' %}
+				{% assign new_lang = 'en' %}
+				{% else %}
+				{% assign new_lang = 'zh' %}
+				{% endif %}
 				<a href="{{ site.baseurl }}/{{ new_lang }}">
-					{% if page.lang == 'en' %}中文{% else %}English{% endif %}
+					{% if page.lang == 'zh' %}English{% else %}中文{% endif %}
 				</a>
 			</li>
 		</ul>
