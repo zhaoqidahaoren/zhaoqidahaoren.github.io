@@ -1,7 +1,6 @@
 ---
 title: Welcome
 layout: default
-lang: en
 ---
 
 This is the **Edition** template from [CloudCannon](http://cloudcannon.com/).
