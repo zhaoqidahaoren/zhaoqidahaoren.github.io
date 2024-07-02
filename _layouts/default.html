@@ -31,8 +31,8 @@
 				{{ site.title }}
 				<button type="button" class="open-nav" id="open-nav"></button>
 				<nav>
-					<a href="{{ site.baseurl }}/en/">English</a>
-					<a href="{{ site.baseurl }}/zh/">中文</a>
+					<a href="{{ page.url | replace:'/zh/','/en/' }}">English</a>
+					<a href="{{ page.url | replace:'/en/','/zh/' }}">中文</a>
 				</nav>
 			</h1>
 
