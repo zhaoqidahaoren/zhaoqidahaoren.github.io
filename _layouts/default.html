@@ -50,7 +50,7 @@
 		</ul>
 
 		<ul>
-			{% assign grouped = site.zh_docs | group_by: 'category' %}
+			{% assign grouped = site.en_docs | group_by: 'category' %}
 			{% for group in grouped %}
 			<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
 				{% assign items = group.items | sort: 'order' %}
@@ -66,12 +66,12 @@
 			{% endfor %}
 		</ul>
 
-		<ul>
-			<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">
-				{% assign changelog = site.html_pages | where: 'lang', page.lang | where: 'url', '/changelog/' | first %}
-				<a href="{{ site.baseurl }}/{{ page.lang | default: site.default_lang }}/changelog/">{{ changelog.title }}</a>
-			</li>
-		</ul>
+<!--		<ul>-->
+<!--			<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">-->
+<!--				{% assign changelog = site.html_pages | where: 'lang', page.lang | where: 'url', '/changelog/' | first %}-->
+<!--				<a href="{{ site.baseurl }}/{{ page.lang | default: site.default_lang }}/changelog/">{{ changelog.title }}</a>-->
+<!--			</li>-->
+<!--		</ul>-->
 
 		<!-- 语言切换链接 -->
 		<ul>
