@@ -45,8 +45,12 @@
 		</ul>
 
 		<ul>
-			{% assign docs = site.collections | where: 'label', page.lang | first %}
-			{% assign grouped = docs.docs | group_by: 'category' %}
+			{% if page.lang == 'en' %}
+			{% assign docs = site.en_docs %}
+			{% elsif page.lang == 'zh' %}
+			{% assign docs = site.zh_docs %}
+			{% endif %}
+			{% assign grouped = docs | group_by: 'category' %}
 			{% for group in grouped %}
 			<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
 				{% assign items = group.items | sort: 'order' %}
