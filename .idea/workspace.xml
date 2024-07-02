@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d201cf-d505-4387-a07a-eb1b2e888a5a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/en/_docs/contact-syncing/phone.md" beforeDir="false" afterPath="$PROJECT_DIR$/en/_docs/contact-syncing/phone.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/en/_layouts/default.html" beforeDir="false" afterPath="$PROJECT_DIR$/en/_layouts/default.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zh/_docs/contact-syncing/facebook.md" beforeDir="false" afterPath="$PROJECT_DIR$/zh/_docs/contact-syncing/facebook.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/zh/_docs/contact-syncing/phone.md" beforeDir="false" afterPath="$PROJECT_DIR$/zh/_docs/contact-syncing/phone.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/zh/_layouts/default.html" beforeDir="false" afterPath="$PROJECT_DIR$/zh/_layouts/default.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +45,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719826597264</updated>
-      <workItem from="1719826598697" duration="10449000" />
+      <workItem from="1719826598697" duration="10736000" />
     </task>
     <servers />
   </component>
