@@ -50,21 +50,15 @@
 		</ul>
 
 		<ul>
-			{% if page.lang == 'zh' %}
-			{% assign docs = site.zh_docs %}
-			{% else %}
-			{% assign docs = site.en_docs %}
-			{% endif %}
-
-			{% assign grouped = docs | group_by: 'category' %}
+			{% assign grouped = site.en_docs | group_by: 'category' %}
 			{% for group in grouped %}
 			<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
 				{% assign items = group.items | sort: 'order' %}
-				<a href="{{ site.baseurl }}/{{ page.lang | default: site.default_lang }}{{ items.first.url }}">{{ group.name }}</a>
+				<a href="{{ site.baseurl }}/zh{{ items.first.url }}">{{ group.name }}</a>
 				<ul>
 					{% for item in items %}
 					<li class="nav-item {% if item.url == page.url %}current{% endif %}">
-						<a href="{{ site.baseurl }}/{{ page.lang | default: site.default_lang }}{{ item.url }}">{{ item.title }}</a>
+						<a href="{{ site.baseurl }}/zh{{ item.url }}">{{ item.title }}</a>
 					</li>
 					{% endfor %}
 				</ul>
