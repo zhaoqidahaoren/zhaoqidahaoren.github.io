@@ -1,6 +1,6 @@
 ---
-title: Android
-category: Devices
+title: Deploy
+category: Self Service
 order: 2
 ---
 
