@@ -1,5 +1,6 @@
 ---
 title: Deploy and Upgrade
+category: CocoApp
 order: 2
 ---
 
