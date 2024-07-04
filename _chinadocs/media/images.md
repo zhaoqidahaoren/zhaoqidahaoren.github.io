@@ -4,7 +4,7 @@ category: Media
 order: 1
 ---
 
-Share images with your friends! Send photos and pictures from your computer, phone or camera.
+与好友分享图片！发送计算机、手机或相机中的照片和图片。
 
 > Images are stored until you choose to remove them.
 

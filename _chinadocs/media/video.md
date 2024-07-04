@@ -4,7 +4,7 @@ category: Media
 order: 2
 ---
 
-Share video to your friends! Send videos from your computer, phone, camera or YouTube.
+与好友分享视频！从您的计算机、手机、相机或 YouTube 发送视频。
 
 To share a video:
 

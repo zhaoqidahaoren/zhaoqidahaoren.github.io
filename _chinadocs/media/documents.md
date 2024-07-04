@@ -4,9 +4,9 @@ category: Media
 order: 3
 ---
 
-Share documents with your friends! Send work or school projects from your computer or phone.
+与好友共享文档！从您的计算机或手机发送工作或学校项目。
 
-To share a document:
+要共享文档：
 
 1. Open a message with someone
 2. Select the **Send Media** button

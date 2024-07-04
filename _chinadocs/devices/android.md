@@ -4,9 +4,9 @@ category: Devices
 order: 2
 ---
 
-Use ChatApp on all of your Android devices. Every version is supported.
+在您的所有 Android 设备上使用聊天应用程序。每个版本均受支持。
 
-To install ChatApp on your device:
+要在您的设备上安装聊天应用程序：
 
 1. Open the Google Play Store
 2. Search for ChatApp

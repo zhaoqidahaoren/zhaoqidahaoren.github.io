@@ -4,9 +4,9 @@ category: Devices
 order: 1
 ---
 
-Use ChatApp on most of your Apple devices. Only the latest versions are supported.
+在您的所有 Android 设备上使用聊天应用程序。每个版本均受支持。
 
-To install ChatApp on your device:
+要在您的设备上安装聊天应用程序：
 
 1. Open the App Store
 2. Search for ChatApp
