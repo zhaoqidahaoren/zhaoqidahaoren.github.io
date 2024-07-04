@@ -1,7 +1,7 @@
 # ----
 # Site
 
-title: Developers
+title: Edition Template
 url: "https://long-pig.cloudvent.net"
 baseurl:
 google_analytics_key:
@@ -15,7 +15,7 @@ author:
   email:
   twitter: # twitter username without the @ symbol
 social:
-  name: Developers
+  name: Edition Template
   links:
     - https://github.com/CloudCannon/edition-jekyll-template
 
@@ -52,7 +52,10 @@ collections:
     title: Documentation
     permalink: /:path/
     output: true
-
+  chinaposts:
+    output: true
+  chinadocs:
+    output: true
 defaults:
   -
     scope:
