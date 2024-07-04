@@ -2,6 +2,7 @@
 title: Documents
 category: Media
 order: 3
+permalink: /china/documents/
 ---
 
 与好友共享文档！从您的计算机或手机发送工作或学校项目。

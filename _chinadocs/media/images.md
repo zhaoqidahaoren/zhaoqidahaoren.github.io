@@ -2,6 +2,7 @@
 title: Images
 category: Media
 order: 1
+permalink: /china/images/
 ---
 
 与好友分享图片！发送计算机、手机或相机中的照片和图片。

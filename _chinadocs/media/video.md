@@ -2,6 +2,7 @@
 title: Video
 category: Media
 order: 2
+permalink: /china/video/
 ---
 
 与好友分享视频！从您的计算机、手机、相机或 YouTube 发送视频。
