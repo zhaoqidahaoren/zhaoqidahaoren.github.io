@@ -1,5 +1,5 @@
 ---
-title: Android
+title: 安卓
 category: Devices
 order: 2
 permalink: /china/android/
