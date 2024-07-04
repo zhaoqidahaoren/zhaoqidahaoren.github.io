@@ -94,22 +94,22 @@
 			</ul>
 
 			<!-- change log -->
-<!--			<ul>-->
-<!--				{% unless page.url contains '/china/' %}-->
+			<ul>
+				{% unless page.url contains '/china/' %}
 
-<!--				<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">-->
-<!--					{% assign changelog = site.html_pages | where: 'url', '/changelog/' | first %}-->
-<!--					<a href="{{ site.baseurl }}/changelog/">{{ changelog.title }}</a>-->
-<!--				</li>-->
-<!--				{% endunless %}-->
+				<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">
+					{% assign changelog = site.html_pages | where: 'url', '/changelog/' | first %}
+					<a href="{{ site.baseurl }}/changelog/">{{ changelog.title }}</a>
+				</li>
+				{% endunless %}
 
-<!--				{% if page.url contains '/china/' %}-->
-<!--				<li data="1" class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">-->
-<!--					{% assign ChinaChangelog = site.html_pages | where: 'url', '/china/chinachangelog/' | first %}-->
-<!--					<a href="{{ site.baseurl }}/china/chinachangelog/">{{ ChinaChangelog.title }}</a>-->
-<!--				</li>-->
-<!--				{% endif %}-->
-<!--			</ul>-->
+				{% if page.url contains '/china/' %}
+				<li data="1" class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">
+					{% assign ChinaChangelog = site.html_pages | where: 'url', '/china/chinachangelog/' | first %}
+					<a href="{{ site.baseurl }}/china/chinachangelog/">{{ ChinaChangelog.title }}</a>
+				</li>
+				{% endif %}
+			</ul>
 
 			<!-- 中英文 -->
 			<ul>
