@@ -85,7 +85,7 @@
 					<ul>
 						{% for item in items %}
 						<li class="nav-item {% if item.url == page.url %}current{% endif %}"><a
-								href="{{ site.baseurl }}/china/{{ item.url }}">{{ item.title }}</a></li>
+								href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></li>
 						{% endfor %}
 					</ul>
 				</li>
