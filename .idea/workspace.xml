@@ -2,7 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d201cf-d505-4387-a07a-eb1b2e888a5a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/_chinadocs/devices/android.md" beforeDir="false" afterPath="$PROJECT_DIR$/_chinadocs/devices/android.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_chinadocs/_defaults.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_chinadocs/contact-syncing/facebook.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_chinadocs/devices/android.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_chinadocs/devices/ios.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_chinadocs/media/documents.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_chinadocs/media/images.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_chinadocs/media/video.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_docs/_defaults.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_docs/contact-syncing/facebook.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_docs/contact-syncing/phone.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_docs/devices/android.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_docs/devices/ios.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_docs/media/documents.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_docs/media/images.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_docs/media/video.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +72,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719826597264</updated>
-      <workItem from="1719826598697" duration="37342000" />
+      <workItem from="1719826598697" duration="40915000" />
     </task>
     <servers />
   </component>
