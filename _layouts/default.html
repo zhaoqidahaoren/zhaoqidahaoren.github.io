@@ -151,6 +151,21 @@
 		document.getElementById("open-nav").addEventListener("click", function () {
 			document.body.classList.toggle("nav-open");
 		});
+
+		document.addEventListener('DOMContentLoaded', function() {
+			const toggleGroups = document.querySelectorAll('.toggle-group');
+
+			toggleGroups.forEach(toggle => {
+				toggle.addEventListener('click', function() {
+					const groupItems = this.nextElementSibling;
+					if (groupItems.style.display === 'none') {
+						groupItems.style.display = 'block';
+					} else {
+						groupItems.style.display = 'none';
+					}
+				});
+			});
+		});
 	</script>
 </body>
 

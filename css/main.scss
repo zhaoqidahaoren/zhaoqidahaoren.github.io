@@ -23,6 +23,33 @@ $space: 20px;
 $mobile-break: 700px;
 $full-width-break: $nav-width + ($space * 4) + $content-max-width;
 
+.nav-item {
+  list-style: none;
+
+  a,
+  span {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px; // 统一字体大小
+    line-height: 1.5; // 统一行高
+    font-family: Arial, sans-serif; // 统一字体
+  }
+
+  a:hover,
+  span:hover {
+    text-decoration: underline;
+  }
+}
+
+.toggle-group {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.group-items {
+  padding-left: 20px;
+}
+
 @import "mixins";
 @import "normalize";
 @import "pygments";
