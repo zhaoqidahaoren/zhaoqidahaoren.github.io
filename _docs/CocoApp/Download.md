@@ -1,6 +1,6 @@
 ---
 title: Download
-category: 联系人同步
-order: 1
+category: CocoApp
+order: 4
 permalink: /Download/
 ---
