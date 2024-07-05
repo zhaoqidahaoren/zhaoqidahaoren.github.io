@@ -67,11 +67,8 @@
 					<a href="{{ site.baseurl }}{{ items.first.url }}">{{ group.name }}</a>
 					<ul>
 						{% for item in items %}
-						<li class="nav-item {% if item.url == page.url %}current{% endif %}">
-							{% if item.clickable %}
-							<a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a>
-							{% else %}
-						</li>
+						<li class="nav-item {% if item.url == page.url %}current{% endif %}"><a
+								href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></li>
 						{% endfor %}
 					</ul>
 				</li>
@@ -87,11 +84,8 @@
 					<a href="{{ site.baseurl }}{{ items.first.url }}">{{ group.name }}</a>
 					<ul>
 						{% for item in items %}
-						<li class="nav-item {% if item.url == page.url %}current{% endif %}">
-							{% if item.clickable %}
-								<a href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a>
-							{% else %}
-						</li>
+						<li class="nav-item {% if item.url == page.url %}current{% endif %}"><a
+								href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></li>
 						{% endfor %}
 					</ul>
 				</li>
