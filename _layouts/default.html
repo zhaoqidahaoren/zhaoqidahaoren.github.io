@@ -67,14 +67,8 @@
 					<a href="{{ site.baseurl }}{{ items.first.url }}">{{ group.name }}</a>
 					<ul>
 						{% for item in items %}
-						<li class="nav-item {% if item.url == page.url %}current{% endif %}">
-							{% if item.clickable %}
-							<a
-								href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a>
-							{% else %}
-							<span>{{ item.title }}</span>
-							{% endif%}
-						</li>
+						<li class="nav-item {% if item.url == page.url %}current{% endif %}"><a
+								href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></li>
 						{% endfor %}
 					</ul>
 				</li>
@@ -90,14 +84,8 @@
 					<a href="{{ site.baseurl }}{{ items.first.url }}">{{ group.name }}</a>
 					<ul>
 						{% for item in items %}
-						<li class="nav-item {% if item.url == page.url %}current{% endif %}">
-							{% if item.clickable %}
-							<a
-								href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a>
-							{% else %}
-							<span>{{ item.title }}</span>
-							{% endif%}
-						</li>
+						<li class="nav-item {% if item.url == page.url %}current{% endif %}"><a
+								href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a></li>
 						{% endfor %}
 					</ul>
 				</li>
@@ -150,21 +138,6 @@
 	<script>
 		document.getElementById("open-nav").addEventListener("click", function () {
 			document.body.classList.toggle("nav-open");
-		});
-
-		document.addEventListener('DOMContentLoaded', function() {
-			const toggleGroups = document.querySelectorAll('.toggle-group');
-
-			toggleGroups.forEach(toggle => {
-				toggle.addEventListener('click', function() {
-					const groupItems = this.nextElementSibling;
-					if (groupItems.style.display === 'none') {
-						groupItems.style.display = 'block';
-					} else {
-						groupItems.style.display = 'none';
-					}
-				});
-			});
 		});
 	</script>
 </body>
