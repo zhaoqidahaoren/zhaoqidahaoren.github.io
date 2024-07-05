@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3d201cf-d505-4387-a07a-eb1b2e888a5a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_chinadocs/CocoApp/DeployandUpgrade.md" beforeDir="false" afterPath="$PROJECT_DIR$/_chinadocs/CocoApp/DeployandUpgrade.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_chinadocs/CocoApp/SDKReference.md" beforeDir="false" afterPath="$PROJECT_DIR$/_chinadocs/CocoApp/SDKReference.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_chinadocs/Self Service/Deploy.md" beforeDir="false" afterPath="$PROJECT_DIR$/_chinadocs/Self Service/Deploy.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_docs/CocoApp/DeployandUpgrade.md" beforeDir="false" afterPath="$PROJECT_DIR$/_docs/CocoApp/DeployandUpgrade.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_docs/CocoApp/SDKReference.md" beforeDir="false" afterPath="$PROJECT_DIR$/_docs/CocoApp/SDKReference.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_docs/Self Service/Deploy.md" beforeDir="false" afterPath="$PROJECT_DIR$/_docs/Self Service/Deploy.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/china/chinaindex.md" beforeDir="false" afterPath="$PROJECT_DIR$/china/chinaindex.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +57,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1719826597264</updated>
-      <workItem from="1719826598697" duration="49454000" />
+      <workItem from="1719826598697" duration="49583000" />
     </task>
     <servers />
   </component>
