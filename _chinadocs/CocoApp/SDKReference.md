@@ -1,5 +1,5 @@
 ---
-title: SDK Reference
+title: API接口说明
 category: CocoApp
 order: 2
 permalink: /china/SDKReference/

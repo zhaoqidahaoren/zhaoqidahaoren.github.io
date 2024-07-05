@@ -1,5 +1,5 @@
 ---
-title: Deploy
+title: 自服务部署指南
 category: Self Service
 order: 2
 permalink: /china/Deploy/

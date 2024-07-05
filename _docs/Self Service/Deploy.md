@@ -7,64 +7,61 @@ ulOrder: 2
 clickable: true
 ---
 
-# CocoCat 自服务部署指南
+# CocoCat Self-Service Deployment Guide
 
-本文档主要提供 CocoCat 自服务的部署指南，旨在确保自服务顺利部署并正常运行，为开发团队提供高效、稳定的服务基础设施。包括主服务、MongoDB 和 Redis 的详细安装与配置，以及对项目 CocoApp 的开发自服务指导。
+This document primarily provides a self-service deployment guide for CocoCat, aiming to ensure the successful deployment and operation of self-service, and to provide the development team with an efficient and stable service infrastructure. It includes detailed installation and configuration of the main service, MongoDB, and Redis, as well as guidance on developing the CocoApp self-service project.
 
+## Table of Contents
 
-
-## 目录
-
-1. [安装和配置](#安装和配置)
-    - 1.1 [最低硬件配置](#最低硬件配置)
-    - 1.2 [源码安装](#源码安装)
-        - 1.2.1 [Ubuntu 系统](#ubuntu-系统)
-        - 1.2.2 [其他操作系统](#其他操作系统)
-    - 1.3 [Docker 安装](#docker-安装)
-2. [配置参数](#配置参数)
-3. [CocoAPP自服务配置](#CocoAPP自服务配置)
-4. [故障排除](#故障排除)
+1. Installation and Configuration
+    - 1.1 Minimum Hardware Requirements
+    - 1.2 Source Code Installation
+        - 1.2.1 Ubuntu System
+        - 1.2.2 Other Operating Systems
+    - 1.3 Docker Installation
+2. Configuration Parameters
+3. CocoApp Self-Service Configuration
+4. Troubleshooting
 
 ---
 
 
+## Installation and Configuration
 
-## 安装和配置
+### Minimum Hardware Requirements
 
-### 最低硬件配置
+- CPU: 2 cores
+- Memory: 4GB
 
-- CPU：2 核心
-- 内存：4GB
+### Source Code Installation
 
-### 源码安装
+#### Ubuntu System
 
-#### Ubuntu 系统
+**Operating System Requirements**
 
-**操作系统要求**
+- Ubuntu 22.04 or higher
 
-- Ubuntu 22.04 或更高版本
+**Software Tools Requirements**
 
-**软件工具要求**
+- Node.js version 16 or higher
 
-- Node.js 版本 16 或更高版本
+1. **Download and extract** installation files from the [project official website]:(https://example.com/cococatserver.zip)
 
-1. **下载安装文件** 从 [项目官网下载地址](https://example.com/cococatserver.zip) 下载并解压安装文件：
-
-   ``` bash
+   ```bash
    wget https://cococat.com/cococatserver.zip
    unzip cococatserver.zip
    cd cococatserver
    ```
 
-2. **安装项目依赖**
+2. **Install project dependencies**
 
    ```bash
    npm install
    ```
 
-3. **安装与配置 MongoDB** 请参考 [官方 MongoDB 安装指南](https://www.mongodb.com/docs/manual/installation/) 并按以下概览步骤操作：
+3. **Install and configure MongoDB** Refer to the [official MongoDB installation guide](https://www.mongodb.com/docs/manual/installation/) and follow the overview steps below:
 
-    1. **安装 MongoDB**
+    1. **Install MongoDB**
 
    ```bash
    wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
@@ -73,87 +70,86 @@ clickable: true
    sudo apt install -y mongodb-org
    ```
 
-    2. **启动 MongoDB 服务**
+    2. **Start MongoDB service**
 
    ```bash
    sudo systemctl start mongod
    sudo systemctl enable mongod
    ```
 
-    3. **配置 MongoDB 用户**
+    3. **Configure MongoDB user**
 
    ```bash
    mongo
    use admin
    db.createUser({
-     user: "admin",
-     pwd: "adminpassword",
-     roles: [{ role: "userAdminAnyDatabase", db: "admin" }]
+    user: "admin",
+    pwd: "adminpassword",
+    roles: [{ role: "userAdminAnyDatabase", db: "admin" }]
    })
    ```
 
-4. **安装与配置 Redis** 请参考 [官方 Redis 安装指南](https://redis.io/docs/getting-started/installation/) 并按以下概览步骤操作：
+4. **Install and configure Redis** Refer to [the official Redis installation guide](https://redis.io/docs/getting-started/installation/) and follow the overview steps below:
 
-    1. **安装 Redis**
+    1. **Install Redis**
 
    ```bash
    sudo apt update
    sudo apt install -y redis-server
    ```
 
-    2. **配置 Redis 密码** 编辑 `/etc/redis/redis.conf` 文件：
+    2. **Configure Redis password** Edit the `/etc/redis/redis.conf` file:
 
    ```conf
    requirepass yourredispassword
    ```
 
-5. **启动 Redis 服务**
+5. **Start Redis service**
 
    ```bash
    sudo systemctl restart redis.service
    sudo systemctl enable redis.service
    ```
 
-6. **启动自服务**
+6. **Start self-service**
 
-   配置 `config.conf` 后启动自服务，具体配置详见[配置参数](#配置参数)。
+   After configuring `config.conf`, start the self-service. For detailed configuration, see [Configuration Parameters].(#Configuration Parameters).
 
    ```bash
-   node cococat.js # 建议放在后台运行
+   node cococat.js # It is recommended to run in the background
    ```
 
-   进入 `cococat-route` 目录，配置 `pango.conf`，然后启动服务。具体配置详见[配置参数](#配置参数)。
+   Enter the `cococat-route` directory, configure `pango.conf`, and then start the service. For detailed configuration, see [Configuration Parameters] (#Configuration Parameters).
 
    ```bash
    cd cococat-route
    chmod +x cococatroute
-   ./cococatroute # 建议放在后台运行
+   ./cococatroute # It is recommended to run in the background
    ```
 
-7. **确认启动成功**
-
-   在启动日志中查找是否有 `Service connection completed!`，日志可在 `logs` 目录下查看。
-
+7. **Confirm Successful Startup**
+   Check the startup logs for the message `Service connection completed!`. `Logs` can be viewed in the logs directory.
 
 
-### Docker 安装
 
-**软件工具要求**
+### Docker Installation ##
 
-- Docker 版本 20.10 或更高版本
-- Docker Compose 版本 1.28 或更高版本
+**Software Tools Requirements**
 
-#### Docker 环境准备
+- Docker version 20.10 or higher
+- Docker Compose version 1.28 or higher
 
-1. **安装 Docker**
-   请参考 [官方 Docker 文档](https://docs.docker.com/engine/install/ubuntu/) 进行 Docker 安装。
+#### Docker Environment Preparation
 
-2. **安装 Docker Compose**
-   请参考 [官方 Docker Compose 文档](https://docs.docker.com/compose/install/) 进行 Docker Compose 安装。
+1. **Install Docker**
+   Refer to [the official Docker documentatio](https://docs.docker.com/engine/install/ubuntu/) for Docker installation.
 
-#### 使用 Docker Compose 安装
+2. **Install Docker Compose**
+   Refer to [the official Docker Compose documentation](https://docs.docker.com/compose/install/) for Docker Compose installation.
 
-1. **创建docker-compose.yml文件**
+#### Installation Using Docker Compose
+
+1. **Create the docker-compose.yml file**
 
    ```yaml
    version: '3'
@@ -195,48 +191,49 @@ clickable: true
          - ./config.json:/app/config.json
          - ./logs:/app/logs
          - ./cococat_route/pango.conf:/app/cococat_route/pango.conf
-         - ./data/cococatroute/userkey.json:/app/cococat_route/userkey.json  #userkey.json需要在宿主机上提前创建好空文件
+         - ./data/cococatroute/userkey.json:/app/cococat_route/userkey.json  #userkey.json needs to be pre-created as an empty file on the host
          - ./data/cococatroute/data:/app/cococat_route/data
          - ./data/cococatroute/pangomail:/app/cococat_route/pangomail
    ```
 
-2. **配置文件**
 
-   主要配置`config.json`、`pango.conf`，具体配置详见[配置参数](#配置参数)。
+2. **Configuration Files**
 
-3. **启动服务**
+   Mainly configure `config.json` and `pango.conf`. For detailed configuration, see [Configuration Parameters] (#Configuration Parameters).
+
+3. **Start the Services**
 
    ```bash
    docker-compose up -d
    ```
 
-   **停止服务**
+4. **Stop the Services**
 
    ```bash
    docker-compose down
    ```
 
-4. **确认启动成功**
+5. **Confirm Successful Startup**
 
-    - 使用 `docker-compose ps` 确认服务状态：
+- Use `docker-compose ps` to check the service status:
 
-      ```bash
-      docker-compose ps
-      ```
+  ```bash
+  docker-compose ps
+  ```
 
-    - 在启动日志中查找是否有 `Service connection completed!`，日志可在 `logs` 目录下查看。
+  Look for `Service connection completed!` in the startup logs, which can be found in the `logs` directory.
 
 
 
-## 配置参数
+## Configuration Parameters
 
-CocoCat 自服务主要由 `cococat-web` 和 `cococat-route` 组成。
+CocoCat self-service mainly consists of `cococat-web` and `cococat-route`.
 
 ### cococat-web
 
 #### config.json
 
-该配置文件包含以下参数：
+This configuration file includes the following parameters:
 
 ```json
 {
@@ -270,38 +267,37 @@ CocoCat 自服务主要由 `cococat-web` 和 `cococat-route` 组成。
 }
 ```
 
-##### 参数说明
 
-+ **`AppTitle`**：名称，默认为 `CocoCat-Web`。
-+ **`mongo`**：
-    - **`host`**：MongoDB 的主机地址，默认为 `127.0.0.1`。
-    - **`port`**：MongoDB 的端口号，默认为 `27017`。
-    - **`username`**：MongoDB 用户名。
-    - **`password`**：MongoDB 密码。
-    - **`database`**：MongoDB 验证数据库，默认为 `admin`。
-    - **`uri`**：MongoDB 连接 URI，若设置，则优先使用。
-    - **`dbName`**：MongoDB 数据库名称，默认为 `cococatdb`。
-+ **`redis`**：
-    - **`host`**：Redis 的主机地址，默认为 `127.0.0.1`。
-    - **`port`**：Redis 的端口号，默认为 `6379`。
-    - **`db`**：Redis 的数据库索引，默认为 `0`。
-    - **`password`**：Redis 密码，默认为空。
-+ **`bodyParser`**：
-    - **`urlencoded.limit`**：URL 编码请求体的最大大小限制，默认为 `1mb`。
-    - **`json.limit`**：JSON 请求体的最大大小限制，默认为 `1mb`。
-+ **`port`**：`cococat-web` 监听的端口号，默认为 `4567`。
-+ **`remoteService`**：应用后端服务地址，格式为 `http://{IP}:{port}`，默认为 `http://127.0.0.1:8080`。
-+ **`queue`**：队列组件类型，默认为 `redis`。
+##### Parameter Descriptions
 
-**注意**：确保 MongoDB 和 Redis 的连接信息正确无误，并为所有必需参数提供适当的值，以确保 `cococat-web` 服务正常运行。
++ **`AppTitle`**: Name, default is `CocoCat-Web`.
++ **`mongo`**:
+    - **`host`**: MongoDB host address, default is `127.0.0.1`.
+    - **`port`**: MongoDB port number, default is `27017`.
+    - **`username`**: MongoDB username.
+    - **`password`**: MongoDB password.
+    - **`database`**: MongoDB authentication database, default is `admin`.
+    - **`uri`**: MongoDB connection URI, if set, it takes precedence.
+    - **`dbName`**: MongoDB database name, default is `cococatdb`.
++ **`redis`**:
+    - **`host`**: Redis host address, default is `127.0.0.1`.
+    - **`port`**: Redis port number, default is `6379`.
+    - **`db`**: Redis database index, default is `0`.
+    - **`password`**: Redis password, default is empty.
++ **`bodyParser`**:
+    - **`urlencoded.limit`**: Maximum size limit for URL-encoded request bodies, default is `1mb`.
+    - **`json.limit`**: Maximum size limit for JSON request bodies, default is `1mb`.
++ **`port`**: Port number that `cococat-web` listens on, default is `4567`.
++ **`remoteService`**: Backend service address, format is `http://{IP}:{port}`, default is `http://127.0.0.1:8080`.
++ **`queue`**: Queue component type, default is `redis`.
 
-
+**Note**: Ensure that the MongoDB and Redis connection information is correct and provide appropriate values for all required parameters to ensure the proper operation of the `cococat-web` service.
 
 ### cococat-route
 
 #### `pango.conf`
 
-该配置文件包含以下参数：
+This configuration file includes the following parameters：
 
 ```c
 [global]
@@ -311,28 +307,27 @@ nodserverurl=http://127.0.0.1:4567
 defaultpeers=ODAuMjUxLjIxNS4yMjg7MTA0LjEyOC45MC4yNzsxMDQuMjI0LjE3Ni4xNTE7ODAuMjUxLjIxNi4zMzs2NS40OS4yMDMuNTY7NjUuNDkuMjA2Ljk0OzY1LjQ5LjIxOC4xMDg=
 ```
 
-##### 参数说明
+##### Parameter Descriptions
 
-+ **`localsrvport`**：`cococat-route` 服务的端口号，默认为 `4568`。
-+ **`t2trepeater`**：中继服务的 BTC 地址。
-+ **`nodserverurl`**：`cococat-web` 服务的 URL，默认为 `http://127.0.0.1:4567`。
-+ **`defaultpeers`**：默认节点的列表。
++ **`localsrvport`**：Port number for `cococat-route` service, default is `4568`.
++ **`t2trepeater`**：BTC address of the relay service.
++ **`nodserverurl`**：URL of the `cococat-web` service, default is `http://127.0.0.1:4567`.
++ **`defaultpeers`**：List of default nodes.
 
 
+## CocoApp Self-Service Configuration
 
-## CocoApp 自服务配置
+According to the `CocoApp` development guide, ensure that the development environment is ready。
 
-根据 `CocoApp` 开发指南，首先确保开发环境已经准备就绪。
+### Obtain the Service Key for Self-Service
 
-### 获取自服务的 Service Key
-
-要对自服务进行集成，需要获取一个唯一的 `service-key`。这可以通过调用 `getServiceKey` 接口实现。使用以下命令从本地服务器获取 `service-key`：
+To integrate self-service, you need to obtain a unique `service-key`。This can be achieved by calling the `getServiceKey` interface。Use the following command to get the `service-key` from the local server：
 
 ```bash
 curl http://127.0.0.1:4567/getServiceKey
 ```
 
-#### 成功响应示例：
+#### Example of a successful response：
 
 ```json
 {
@@ -341,12 +336,12 @@ curl http://127.0.0.1:4567/getServiceKey
 }
 ```
 
-### 使用 Service Key
+### Use the Service Key
 
-成功获取 `service-key` 后，将其用于 `CocoApp` 中注册自服务功能的 `registerService` 方法中。这是将自服务与 `CocoApp` 集成的关键步骤。
+After successfully obtaining the `service-key`, use it in the `registerService` method of `CocoApp` to register the self-service functionality。This is a key step in integrating self-service with `CocoApp`。
 
-### 开发自服务功能
+### Develop Self-Service Functionality
 
-获取 `service-key` 并完成注册后，您可以开始实现自服务的通信功能，使得自服务能够与其他服务进行数据交互和消息传输。
+After obtaining the `service-key` and completing the registration, you can start implementing the self-service communication functionality, enabling the self-service to interact with other services for data exchange and message transmission.
 
-确保按照开发文档正确配置并调用相关 API，以保证服务的稳定运行和良好的用户体验。
+Ensure to configure and call the relevant APIs correctly according to the development documentation to ensure stable operation and a good user experience of the service.

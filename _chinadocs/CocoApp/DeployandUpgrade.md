@@ -1,5 +1,5 @@
 ---
-title: Deployed Upgrade
+title: CocoAPP开发指南
 category: CocoApp
 order: 3
 permalink: /china/DeployedUpgrade/

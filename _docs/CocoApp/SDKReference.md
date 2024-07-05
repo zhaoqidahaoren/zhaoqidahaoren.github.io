@@ -9,35 +9,35 @@ clickable: true
 
 # CocoAPP API
 
-## 快速入门
+## Quick Start
 
-### 简介
+### Introduction
 
-CocoAPP API 是一套设计用于实现第三方应用（即CocoAPP）与CocoCat平台之间通信的接口。这套API支持从基础数据交换到执行复杂操作的各种功能调用。根据功能的不同，API接口被分为不同的等级，每个等级的接口访问都需要相应等级的官方授权。
+CocoAPP API is a set of interfaces designed to facilitate communication between third-party applications (i.e., CocoAPP) and the CocoCat platform. This API supports various functions from basic data exchange to executing complex operations. Depending on the functionality, the API interfaces are categorized into different levels, and access to each level requires the corresponding official authorization.
 
 
 
-### 安装
+### Installation
 
-要开始使用CocoAPP API，首先需要集成 `MessageHandler.js` 库到您的项目中。这个库可以从官方网站下载。一旦下载，您就可以将它包含在您的项目中，并开始使用。以下是在 Vue 中引用的示例：
+To start using the CocoAPP API, you first need to integrate the MessageHandler.js library into your project. This library can be downloaded from the official website. Once downloaded, you can include it in your project and start using it. Here is an example of how to import it in Vue:
 
 ```javascript
 import { MessageHandler } from "@/utils/MessageHandler";
 ```
 
-然后，您可以全局初始化一个 `MessageHandler` 对象，以便在整个应用中使用。
+Next, you can initialize a  `MessageHandler` object globally to use it throughout your application.
 
 ```javascript
 let messageHandler = new MessageHandler();
 ```
 
-`MessageHandler` 对象包含一个 `sendMessageToParent` 方法，用于调用 CocoAPP API 方法。此方法的参数包括：
+The `MessageHandler` object contains a  `sendMessageToParent` method used to call CocoAPP API methods. The parameters for this method include:
 
-- `cmd`：CocoAPP API 接口方法的名称。
-- `payload`：传递给 CocoAPP API 接口方法的参数对象。
-- `callback`：回调函数，用于在 CocoAPP 完成操作后执行相应的业务逻辑。
+- `cmd`：The name of the CocoAPP API interface method.
+- `payload`：The parameters object to be passed to the CocoAPP API interface method.
+- `callback`：A callback function to execute the corresponding business logic after CocoAPP completes the operation.
 
-示例：
+Example：
 
 ```javascript
 let cmd = "onload";
@@ -49,7 +49,7 @@ let payload = {
     "messageId": new Date().getTime()
 };
 let callback = (response) => {
-    // 处理来自 CocoAPP API 的响应
+     // Handle the response from the CocoAPP API
     console.log("Received response from CocoAPP API:", response);
 };
 
@@ -58,28 +58,29 @@ messageHandler.sendMessageToParent(cmd, payload, callback);
 
 
 
-## API接口说明
+## API Interface Description
 
-我们的API接口根据不同的等级划分为Level 0到Level 9，不同等级的用户可以调用不同的功能。请注意，除了Level 0外，其他等级的访问都需要具备相应等级的官方授权签名认证。
+Our API interfaces are categorized from Level 0 to Level 9, and users with different levels can call different functions. Please Note that, except for Level 0, access to other levels requires corresponding level official authorization signature certification.
 
-### 调用说明
+### Call Description
 
-#### 请求参数
+#### Request Parameters
 
-请求参数采用JSON对象的格式，包括以下字段：
+Request parameters are in JSON object format, including the following fields:
 
-| 字段      | 类型   | 必填 | 描述                                                         |
-| --------- | ------ | ---- | ------------------------------------------------------------ |
-| data      | String | 是   | 用于调用API的参数数据，具体数据结构根据API接口的`cmd`不同而变化。 |
-| sign      | Object | 否   | 证书数据，用于特定消息的证书认证。包含以下字段：<br/>- `content`：签名原始数据，包括子站地址、有效期、级别、版本号等信息，采用JSON字符串格式。<br/>- `signature`：签名数据，以Base64编码格式表示。<br/>对于Level 0，请求参数payload里不会对sign做校验，不需要传入sign参数。 |
-| messageId | Int    | 否   | 消息ID，以时间戳（毫秒级）表示。用于重复调用API，对应回调方法。 |
+| Field     | Type   | Required | Description                                                  |
+| --------- | ------ | -------- | ------------------------------------------------------------ |
+| data      | String | Yes      | The parameter data for calling the API; the specific data structure varies depending on the `cmd` of the API interface. |
+| sign      | Object | No       | Certificate data for specific message authentication. It includes the following fields:<br/>- `content`: The original data for the signature, including substation address, validity period, level, version number, etc., in JSON string format.<br/>- `signature`: The signature data, encoded in Base64 format.<br/>For Level 0, the `sign` parameter in the Request Parameters payload will Not be validated, so the `sign` parameter is Not required. |
+| messageId | Int    | No       | Message ID, represented as a timestamp (in milliseconds). Used for repeated API calls and corresponds to the callback method. |
 
-完整请求结构如下：
+
+Complete request structure：
 
 ```json
 {
     "data": {
-        // 参数数据...
+        // Parameter data...
     },
     "sign": {
         "content": "",
@@ -89,70 +90,72 @@ messageHandler.sendMessageToParent(cmd, payload, callback);
 }
 ```
 
-#### 返回参数
+#### Return Parameters
 
-返回参数采用JSON对象的格式，包括以下字段：
+Response parameters are in JSON object format, including the following fields:
 
-| 字段      | 类型   | 描述                                                |
-| --------- | ------ | --------------------------------------------------- |
-| code      | Int    | 响应的状态码，请参阅下面的状态码表以获取详细信息。  |
-| cmd       | String | 调用的API接口方法名称。                             |
-| result    | Object | 接收回调的数据，不同的`cmd`返回不同的数据格式。     |
-| messageId | Int    | 消息ID，以毫秒级表示，对应请求参数中的`messageId`。 |
+| Field     | Type   | Description                                                  |
+| --------- | ------ | ------------------------------------------------------------ |
+| code      | Int    | Response status code. Refer to the status code table below for more details. |
+| cmd       | String | Name of the called API method.                               |
+| result    | Object | Data received in the callback; the format varies depending on the `cmd`. |
+| messageId | Int    | Message ID, represented in milliseconds, corresponds to the `messageId` in the Request Parameters. |
 
-完整响应结构如下：
+
+Complete response structure：
 
 ```json
 {
     "code": 200,
     "cmd": "",
-    "result": 具体数据...,
+    "result": Specific data...,
     "messageId": 0
 }
 ```
 
-#### 状态码表
+#### Status Codes Table
 
-以下是状态码表，用于解释响应中的状态码：
+Here is the status codes table to explain the status codes in the response:
 
-| code  | 描述                     |
-| ----- | ------------------------ |
-| 200   | 请求成功                 |
-| 30001 | 请求格式不正确或参数无效 |
-| 30002 | 未提供证书               |
-| 30003 | 证书校验异常             |
-| 30004 | API方法不存在            |
-| 30005 | 获取资源不存在           |
-| 30006 | chainId异常              |
-| 30007 | 下载失败                 |
-| 30100 | 异常错误                 |
+| Code  | Description                                    |
+| ----- | ---------------------------------------------- |
+| 200   | Request successful                             |
+| 30001 | Incorrect request format or invalid parameters |
+| 30002 | Certificate Not provided                       |
+| 30003 | Certificate verification error                 |
+| 30004 | API method does Not exist                      |
+| 30005 | Requested resource does Not exist              |
+| 30006 | chainId error                                  |
+| 30007 | Download failed                                |
+| 30100 | Exception error                                |
 
 
 
-## 接口详情
+
+## Interface Details
 
 ### onload
 
-用于在 CocoAPP 页面的 `window.onload` 事件触发后执行必要的操作，主要目的是装载和更新 CocoAPP 的数据。
+Used to execute necessary operations after the `window.onload` event of the CocoAPP page is triggered. The main purpose is to load and update the data of CocoAPP.
 
-> **重要提示：为了保证 CocoAPP 在 CocoCat 上的正常显示，启动 CocoAPP 时必须调用一次 `onload` 方法。未调用此方法可能导致 CocoAPP 显示异常。**
+> **Important Note：To ensure the Normal display of CocoAPP on CocoCat, you must call the  `onload` method once when launching CocoAPP. Failure to call this method may result in abNormal display of CocoAPP.**
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters
 
-| 字段    | 类型   | Required | 描述                                                         |
+| Field   | Type   | Required | Description                                                  |
 | ------- | ------ | -------- | ------------------------------------------------------------ |
-| name    | String | true     | 指定的 CocoAPP 名称。用于标识当前正在加载或更新的应用。      |
-| version | String | true     | CocoAPP 的当前应用版本号。此参数有助于在 CocoAPP 升级后验证加载的版本是否为最新。 |
+| name    | String | true     | The specified CocoAPP name. Used to identify the currently loading or updating application. |
+| version | String | true     | The current application version of CocoAPP. This parameter helps to verify whether the loaded version is the latest after the CocoAPP upgrade. |
 
-#### 返回参数
+#### Return Parameters
 
-无
+None
 
-#### 示例
+#### Example
 
 ```javascript
 javascriptCopy code
@@ -164,7 +167,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("onload", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "onload",
@@ -177,56 +180,57 @@ messageHandler.sendMessageToParent("onload", payload, function (res) {
 
 ### connectCocoPay
 
-用于连接 CocoPay 钱包，主要支持以太系公链。连接采用 `Trust Wallet`，一款支持以太坊和多链的钱包应用程序。
+Used to connect to the CocoPay wallet, mainly supporting Ethereum chains. The connection uses  `Trust Wallet`，an application that supports Ethereum and multi-chain.
 
-**注意：**只有在调用此接口并成功返回后，才视为连接成功。链接成功后，根据不同的链，对 `window.ethereum` 或 `indoww.tronWeb` 进行赋值：
+**Note：**The connection is considered successful only after calling this interface and returning successfully. After successful connection, assign to `window.ethereum` or `indoww.tronWeb` based on different chains:
 
-- 对于 Ethereum 系的链：
+- For Ethereum chains:
 
   ```javascript
   window.ethereum = window.parent.top.ethereum;
   ```
 
-- 对于 Tron 链：
+- For Tron chains:
 
   ```javascript
   window.tronWeb = window.parent.top.tronWeb;
   ```
 
-完成连接后，可进行常规 DAPP 操作，如使用 `web3.js`、`ethers.js` 等库。
+After the connection is complete, you can perform regular DAPP operations, such as using libraries like  `web3.js`、`ethers.js` .
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 支持的公链
+#### Supported Chains
 
-| **公链全称**     | 公链缩写符号 |
-| ---------------- | ------------ |
-| Ethereum         | ETH          |
-| BNB Chain        | BSC          |
-| Polygon          | POLYGON      |
-| Avalanche-C      | AVAXC        |
-| TRON             | TRON         |
-| Arbitrum One     | ARBITRUM     |
-| Poly Smart Chain | PSC          |
-| Viction          | VIC          |
+| Full name of the blockchain | Abbreviation of the blockchain symbol |
+| --------------------------- | ------------------------------------- |
+| Ethereum                    | ETH                                   |
+| BNB Chain                   | BSC                                   |
+| Polygon                     | POLYGON                               |
+| Avalanche-C                 | AVAXC                                 |
+| TRON                        | TRON                                  |
+| Arbitrum One                | ARBITRUM                              |
+| Poly Smart Chain            | PSC                                   |
+| Viction                     | VIC                                   |
 
 
-#### 请求参数
+#### Request Parameters:
 
-| 字段      | 类型  | Required | 描述                                                         |
+| Field     | Type  | Required | Description                                                  |
 | --------- | ----- | -------- | ------------------------------------------------------------ |
-| chainList | Array | true     | 传入链的缩写符号，参考支持的公链表。传入多个链，CocoPay 会显示多个公链选择。 |
+| chainList | Array | true     | The abbreviation symbols of the chains passed in, refer to the supported blockchains table. When passing multiple chains, CocoPay will display multiple blockchain options. |
 
-#### 返回参数
+#### Return Parameters:
 
-| 字段      | 类型   | 描述               |
+| Field      | Type  | Description
 | --------- | ------ | ------------------ |
-| chainType | String | 返回链接的链缩写   |
-| account   | String | 返回链接的账户地址 |
+| chainType | String | Returns the linked chain abbreviation   |
+| account   | String | Returns the linked account address |
 
-#### 示例
+
+#### Example:
 
 ```javascript
 javascriptCopy code
@@ -238,7 +242,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("connectCocoPay", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "connectCocoPay",
@@ -255,28 +259,28 @@ messageHandler.sendMessageToParent("connectCocoPay", payload, function (res) {
 
 ### getSafeAreaInsets
 
-用于返回移动设备顶部和底部的安全边界尺寸。
+Used to return the safe area dimensions at the top and bottom of mobile devices.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters:
 
-无
+None
 
-#### 返回参数
+#### Return Parameters:
 
-| 字段           | 类型 | 描述                 |
-| -------------- | ---- | -------------------- |
-| safeAreaTop    | Int  | 顶部安全区域的高度值 |
-| safeAreaBottom | Int  | 底部安全区域的高度值 |
+| Field          | Type | Description                              |
+| -------------- | ---- | ---------------------------------------- |
+| safeAreaTop    | Int  | The height value of the top safe area    |
+| safeAreaBottom | Int  | The height value of the bottom safe area |
 
-#### 使用示例
+#### Usage Example:
 
 ```javascript
 messageHandler.sendMessageToParent("getSafeAreaInsets", {}, function (res) {
-  // 返回示例
+  // Return example
   // {
   //   "code": 200,
   //   "cmd": "getSafeAreaInsets",
@@ -292,44 +296,45 @@ messageHandler.sendMessageToParent("getSafeAreaInsets", {}, function (res) {
 
 ### getLanguage
 
-用于获取 CocoCat 的当前语言设置。
+Used to get the current language setting of CocoCat.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters
 
-无
+None
 
-#### 返回参数
+#### Return Parameters
 
-| 字段   | 类型   | 描述             |
-| ------ | ------ | ---------------- |
-| result | String | 当前的语言代码。 |
+| Field  | Type   | Description            |
+| ------ | ------ | ---------------------- |
+| result | String | Current language code. |
 
-#### 支持的语言
+#### Supported Languages
 
-| 语言代码 | 语言名称 |
-| -------- | -------- |
-| en       | 英语     |
-| zh-cn    | 简体中文 |
-| zh-tw    | 繁體中文 |
-| th       | 泰语     |
-| es       | 西班牙语 |
-| ko       | 韩语     |
-| ja       | 日语     |
-| ar       | 阿拉伯语 |
+| Language code | Language name       |
+| ------------- | ------------------- |
+| en            | English             |
+| zh-cn         | Simplified Chinese  |
+| zh-tw         | Traditional Chinese |
+| th            | Thai                |
+| es            | Spanish             |
+| ko            | Korean              |
+| ja            | Japanese            |
+| ar            | Arabic              |
 
-#### 示例
+#### Example
 
 ```javascript
 messageHandler.sendMessageToParent("getLanguage", {}, function (res) {
-  // 返回示例
+  // Return example
   // {
   //   "code": 200,
   //   "cmd": "getLanguage",
   //   "result": "en"
+  // }
   // }
 });
 ```
@@ -338,28 +343,30 @@ messageHandler.sendMessageToParent("getLanguage", {}, function (res) {
 
 ### readFile
 
-用于从 CocoAPP 下读取所有资源文件。
+Used to read all resource files under CocoAPP.
 
-> 注意：读取资源文件太大会直接影响到 CocoAPP 的性能。
+> Note：Reading too large resource files will directly affect the performance of CocoAPP.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters:
 
-| 字段 | 类型   | Required | 描述                                                         |
-| ---- | ------ | -------- | ------------------------------------------------------------ |
-| path | String | true     | 资源文件的相对路径，以 CocoAPP 地址开始，文件名跟随，路径开头不应加上 "/"。无法用于读取文件夹。示例：<br/>- 读取 CocoAPP 资源：`1BX9T97qS47zN1Wqqv2dfGiR3ahgUqiGRX/test.txt`<br/>- 读取 CocoAPP 文件夹资源：`1BX9T97qS47zN1Wqqv2dfGiR3ahgUqiGRX/common/test.txt` |
-| type | String | false    | 文件的类型。对于文本文件，默认为 UTF-8 编码，此项不必填写。对于需要以 Base64 格式返回的文件（如图片、视频等），此参数应设置为 `Base64`。 |
+#### Request Parameters
 
-#### 返回参数
+| Field | Type   | Required | Description                                                  |
+| ----- | ------ | -------- | ------------------------------------------------------------ |
+| path  | String | true     | The relative path to the resource file, starting with the CocoAPP address, followed by the file name. Do Not prepend a "/" to the path. CanNot be used to read folders. Examples:<br/>- Reading a CocoAPP resource: `1BX9T97qS47zN1Wqqv2dfGiR3ahgUqiGRX/test.txt`<br/>- Reading a resource from a CocoAPP folder: `1BX9T97qS47zN1Wqqv2dfGiR3ahgUqiGRX/common/test.txt` |
+| type  | String | false    | The type of the file. For text files, UTF-8 encoding is assumed by default, and this parameter is Not necessary. For files that need to be returned in Base64 format (such as images, videos, etc.), this parameter should be set to `Base64`. |
 
-| 字段   | 类型   | 描述                   |
-| ------ | ------ | ---------------------- |
-| result | String | 读取到的资源文件内容。 |
+#### Return Parameters
 
-#### 示例
+| Field  | Type   | Description                                                  |
+| ------ | ------ | ------------------------------------------------------------ |
+| result | String | The content of the read resource file. Depending on the `type` parameter, this could be the raw file content (for text files) or the Base64 encoded string of the file (for images, videos, etc.). |
+
+#### Example
 
 ```javascript
 javascriptCopy code
@@ -372,7 +379,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("readFile", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "readFile",
@@ -386,23 +393,25 @@ messageHandler.sendMessageToParent("readFile", payload, function (res) {
 
 ### openURL
 
-用于打开指定的第三方网址，实现对外部 HTTPS 网站的跳转。为保证安全性，仅支持打开使用 HTTPS 协议的网址。
+Used to open a specified third-party URL, achieving a jump to an external HTTPS website. For security reasons, only URLs using the HTTPS protocol are supported.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求传参
+#### Request Parameters
 
-| 字段 | 类型   | Required | 描述                            |
-| ---- | ------ | -------- | ------------------------------- |
-| url  | String | true     | 要打开的第三方 HTTPS 网址链接。 |
+#### Request Parameters
 
-#### 返回参数
+| Field | Type   | Required | Description                                            |
+| ----- | ------ | -------- | ------------------------------------------------------ |
+| url   | String | true     | The HTTPS URL link of the third-party website to open. |
 
-无
+#### Return Parameters
 
-#### 示例
+None
+
+#### Example
 
 ```javascript
 let payload = {
@@ -413,7 +422,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("openURL", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "openURL",
@@ -423,30 +432,29 @@ messageHandler.sendMessageToParent("openURL", payload, function (res) {
 ```
 
 
-
 ### scanQRCode
 
-用于启动扫描二维码功能。
+Used to start the QR code scanning function.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters
 
-无
+None
 
-#### 返回参数
+#### Return Parameters
 
-| 字段   | 类型   | 描述                 |
-| ------ | ------ | -------------------- |
-| result | String | 扫码完成后返回的值。 |
+| Field  | Type   | Description                        |
+| ------ | ------ | ---------------------------------- |
+| result | String | The value returned after scanning. |
 
-#### 示例
+#### example
 
 ```javascript
 messageHandler.sendMessageToParent("scanQRCode", {}, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "scanQRCode",
@@ -456,26 +464,25 @@ messageHandler.sendMessageToParent("scanQRCode", {}, function (res) {
 ```
 
 
-
 ### copyToClipboard
 
-用于复制文字到剪贴板。
+Used to copy text to the clipboard.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters:
 
-| 字段 | 类型   | Required | 描述             |
-| ---- | ------ | -------- | ---------------- |
-| text | String | true     | 复制的文本内容。 |
+| Field | Type   | Required | Description              |
+| ----- | ------ | -------- | ------------------------ |
+| text  | String | true     | The text content copied. |
 
-#### 返回参数
+#### Return Parameters:
 
-无
+None
 
-#### 示例
+#### Example
 
 ```javascript
 let messageHandler = new MessageHandler();
@@ -487,7 +494,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("copyToClipboard", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "copyToClipboard",
@@ -497,31 +504,29 @@ messageHandler.sendMessageToParent("copyToClipboard", payload, function (res) {
 ```
 
 
-
 ### generateQRCode
 
-用于生成二维码，允许通过指定文本内容创建相应的二维码图像。
+Used to generate a QR code, allowing you to create a corresponding QR code image through the specified text content.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters
 
-| 字段 | 类型   | Required | 描述                         |
-| ---- | ------ | -------- | ---------------------------- |
-| text | String | true     | 需要转换成二维码的文本内容。 |
+| Field | Type   | Required | Description                                      |
+| ----- | ------ | -------- | ------------------------------------------------ |
+| text  | String | true     | The text content to be converted into a QR code. |
 
-#### 返回参数
+#### Return Parameters
 
-| 字段   | 类型   | 描述                                                         |
+| Field  | Type   | Description                                                  |
 | ------ | ------ | ------------------------------------------------------------ |
-| result | String | 生成的二维码图像的 Base64 编码字符串，包括数据类型和编码前缀，例如 `data:image/jpeg;base64,`，后跟二维码图像的 Base64 编码字符串。 |
+| result | String | The Base64 encoded string of the generated QR code image, including the data type and encoding prefix, such as  `data:image/jpeg;base64,`，followed by the Base64 encoded string of the QR code image. |
 
-#### 示例
+#### Example
 
 ```javascript
-javascriptCopy code
 let payload = {
   "data": {
     "text": "Hello World!"
@@ -530,7 +535,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("generateQRCode", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "generateQRCode",
@@ -541,29 +546,30 @@ messageHandler.sendMessageToParent("generateQRCode", payload, function (res) {
 ```
 
 
-
 ### saveImage
 
-用于将图片保存到相册。
+Used to save images to the album.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters
 
-| 字段  | 类型   | 必填 | 描述                                                         |
-| ----- | ------ | ---- | ------------------------------------------------------------ |
-| type  | String | 是   | 数据类型，可选值：<br/>- `base64`：图片为Base64格式，必须附加URL前缀，格式为`data:[<mediatype>][;base64],<data>`。<br/>- `path`：本地图片或视频的路径。使用`downloadFile`方法下载文件后，通过相对路径从默认下载目录中读取图片以保存到相册。 |
-| image | String | 是   | 图片的内容。支持的图片格式包括PNG，GIF，JPEG。               |
+| Field | Type   | Required | Description                                                  |
+| ----- | ------ | -------- | ------------------------------------------------------------ |
+| type  | String | Yes      | Data type, optional values: <ul><li>**base64**: The image is in Base64 format and must be accompanied by a URL prefix in the format `data:[<mediatype>][;base64],<data>`.</li><li>**path**: The path of the local image or video. After downloading the file using the `downloadFile` method, read the image from the default download directory using a relative path to save it to the album.</li></ul> |
+| image | String | Yes      | The content of the image. Supported image formats include PNG, GIF, JPEG. |
 
-> **注意**：当`type`为`path`时，路径应为相对路径，指向默认下载目录中的文件。例如，下载的图片名为`coco.png`，则路径应为`coco.png`；若下载资源为zip文件并解压后，图片路径可能为`image/coco.png`。
+> **Note**: When `type` is `path`, the path should be a relative path pointing to the file in the default download directory. For example, if the downloaded image is named `coco.png`, the path should be `coco.png`. If the downloaded resource is a zip file and unzipped, the image path might be `image/coco.png`.
 
-#### 返回参数
 
-无
+#### Return Parameters
 
-#### 示例
+
+None
+
+#### example
 
 ```javascript
 javascript
@@ -576,7 +582,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("saveImage", payload, (res) => {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "saveImage",
@@ -589,26 +595,26 @@ messageHandler.sendMessageToParent("saveImage", payload, (res) => {
 
 ### saveVideo
 
-用于将视频保存到相册。
+Used to save videos to the album.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters
 
-| 字段  | 类型   | 必填 | 描述                                                         |
-| ----- | ------ | ---- | ------------------------------------------------------------ |
-| type  | String | 是   | 数据类型，可选值：<br/>- `base64`：视频为Base64格式，必须附加URL前缀，格式为`data:[<mediatype>][;base64],<data>`。<br/>- `path`：本地视频的路径。使用`downloadFile`方法下载文件后，通过相对路径从默认下载目录中读取视频以保存到相册。 |
-| video | String | 是   | 视频的内容。支持的视频格式为MP4、MOV。                       |
+| Field | Type   | Required | Description                                                  |
+| ----- | ------ | -------- | ------------------------------------------------------------ |
+| type  | String | Yes      | Data type, optional values:<br/>- `base64`: The video is in Base64 format, must be prefixed with a URL scheme, formatted as `data:[<mediatype>][;base64],<data>`.<br/>- `path`: The path to the local video file. After downloading a file using the `downloadFile` method, the video can be read from the default download directory using a relative path to save it to the album. |
+| video | String | Yes      | The content of the video. Supported video formats are MP4, MOV. |
 
-> **注意**：当`type`为`path`时，路径应为相对路径，指向默认下载目录中的文件。例如，下载的视频名为`coco.mp4`，则路径应为`coco.mp4`。
+> **Note**：When`type`is`path`he path should be a relative path pointing to the file in the default download directory. For example, if the downloaded video is named`coco.mp4`，the path should be `coco.mp4`。
 
-#### 返回参数
+#### Return Parameters
 
-无
+None
 
-#### 示例
+#### Example
 
 ```javascript
 let payload = {
@@ -620,7 +626,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("saveVideo", payload, (res) => {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "saveVideo",
@@ -633,62 +639,67 @@ messageHandler.sendMessageToParent("saveVideo", payload, (res) => {
 
 ### getAccount
 
-用于获取该 CocoAPP 下的账户地址，确保每个 CocoAPP 下的用户身份唯一。不同的 CocoAPP 会有不同的账户地址，反映了用户在每个应用中的独立身份。
+Used to obtain the account address under this CocoAPP, ensuring the uniqueness of each user's identity under the CocoAPP. Different CocoAPPs will have different account addresses, reflecting the independent identity of users in each application.
 
-> 注意：若卸载某个 CocoAPP 超过7天后再次下载，其账户地址会更新为新的；否则，账户地址保持不变。
+> Note: If a CocoAPP is uninstalled and then reinstalled after more than 7 days, its account address will be updated to a new one; otherwise, the account address remains unchanged.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters
 
-| 字段 | 类型 | Required | 描述                                                         |
-| ---- | ---- | -------- | ------------------------------------------------------------ |
-| type | Int  | false    | 请求类型。默认返回 BTC 地址；若传入1，则返回 ECC 公钥（Base64 编码字符串）。 |
+| Field | Type | Required | Description                                                  |
+| ----- | ---- | -------- | ------------------------------------------------------------ |
+| type  | Int  | false    | Type of request. Returns BTC address by default; if 1 is passed, returns ECC public key (Base64 encoded string). |
 
-#### 返回参数
+#### Return Parameters
 
-| 字段   | 类型   | 描述                   |
-| ------ | ------ | ---------------------- |
-| result | String | 返回的账户地址或公钥。 |
+| Field  | Type   | Description                             |
+| ------ | ------ | --------------------------------------- |
+| result | String | Returned account address or public key. |
 
-#### 示例
+#### Example
 
 ```javascript
 messageHandler.sendMessageToParent("getAccount", {}, function (res) {
-  // 返回结果
+  // Result returned
   // {
   //   "code": 200,
   //   "cmd": "getAccount",
   //   "result": "1Cg7aGLnLAjXJiYCGZpbqGEz8SLD2v3Qij"
   // }
 });
+
 ```
 
 
 
 ### setExtendedData
 
-此接口允许存储 CocoAPP 的扩展数据，为每个 CocoAPP 提供了最多1M的存储空间。请注意，每次存储操作都会替换之前的数据。
+This interface allows for storing extended data for each CocoAPP, providing up to 1MB of storage space for each CocoAPP. Please Note that each storage operation will replace the previous data.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters
 
-| 字段   | 类型   | Required | 描述                         |
-| ------ | ------ | -------- | ---------------------------- |
-| extend | Object | true     | 需要存储的任意类型扩展数据。 |
+| Field  | Type   | Required | Description                         |
+| ------ | ------ | -------- | ----------------------------------- |
+| extend | Object | true     | Any type of extended data to store. |
 
-#### 返回参数
+#### Return Parameters
 
-无
+None
 
-#### 示例
+#### Example
 
 ```javascript
+// Example code will be here
+
+
+​```javascript
 let payload = {
   "data": {
     "extend": "{\"address\":\"1Cg7aGLnLAjXJiYCGZpbqGEz8SLD2v3Qij\"}"
@@ -697,7 +708,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("setExtendedData", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "setExtendedData",
@@ -708,106 +719,39 @@ messageHandler.sendMessageToParent("setExtendedData", payload, function (res) {
 
 
 
-### getExtendedData
+### setExtendedData
 
-用于从 CocoAPP 中获取先前存储的扩展数据。
+This interface allows for storing extended data for each CocoAPP, providing up to 1MB of storage space for each CocoAPP. Please Note that each storage operation will replace the previous data.
 
-#### 等级
-
-Level 0
-
-#### 请求参数
-
-无
-
-#### 返回参数
-
-| 字段   | 类型   | 描述                 |
-| ------ | ------ | -------------------- |
-| result | Object | 获取存储的扩展数据。 |
-
-#### 示例
-
-```javascript
-messageHandler.sendMessageToParent("getExtendedData", {}, function (res) {
-  // 返回结果
-  // {
-  //   "code": 200,
-  //   "cmd": "getExtendedData",
-  //   "result": "{\"address\":\"1Cg7aGLnLAjXJiYCGZpbqGEz8SLD2v3Qij\"}"
-  // }    
-})
-```
-
-
-
-### generateSignature
-
-用于过对指定的文本消息生成 ECDSA 数字签名。签名程基于 `secp256k1` 椭圆曲线，并利用从 `getAccount` 方法获取的 CocoAPP 账户进行签名，确保了消息的完整性和来源验证，同时与 CocoAPP 账户保持一致性。
-
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters
 
-| 字段    | 类型   | 必填 | 描述               |
-| ------- | ------ | ---- | ------------------ |
-| message | String | 是   | 待签名的文本消息。 |
+| Field  | Type   | Required | Description                         |
+| ------ | ------ | -------- | ----------------------------------- |
+| extend | Object | true     | Any type of extended data to store. |
 
-#### 返回参数
+#### Return Parameters
 
-| 字段   | 类型   | 描述                                 |
-| ------ | ------ | ------------------------------------ |
-| result | String | 生成的数字签名，以 Base64 形式编码。 |
+None
 
-#### 示例
+#### Example
 
 ```javascript
-let payload = {
-  "data": {
-    "message": "Hello World!"
-  },
-  "messageId": new Date().getTime()
-};
+// Example code will be here
 
-messageHandler.sendMessageToParent("generateSignature", payload, (res) => {
-  // 返回结果
-  // {
-  //   "code": 200,
-  //   "cmd": "generateSignature",
-  //   "result": "3045022100aaabbbcccdddee....",
-  //   "messageId": 1703143355158
-  // }    
-});
-```
+#### Return Parameters
+
+| Field  | Type    | Description                                        |
+|--------|---------|----------------------------------------------------|
+| result | Boolean | Verification result, `true` indicates a valid signature, `false` indicates an invalid signature. |
 
 
+#### example
 
-### verifySignature
-
-用于验证由 `generateSignature` 方法生成的数字签名的有效性。它根据提供的原始消息和签名数据来确认签名是否有效，确保了数据完整性和来源验证的一致性。
-
-#### 等级
-
-Level 0
-
-#### 请求参数
-
-| 字段          | 类型   | 必填 | 描述                               |
-| ------------- | ------ | ---- | ---------------------------------- |
-| message       | String | 是   | 需要验证签名的原始文本消息。       |
-| signatureData | String | 是   | 签名数据，以 Base64 编码的字符串。 |
-
-#### 返回参数
-
-| 字段   | 类型    | 描述                                                  |
-| ------ | ------- | ----------------------------------------------------- |
-| result | Boolean | 验证结果，`true` 表示签名有效，`false` 表示签名无效。 |
-
-#### 示例
-
-```javascript
+​```javascript
 let payload = {
   "data": {
     "message": "Hello World!",
@@ -817,7 +761,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("verifySignature", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "verifySignature",
@@ -831,25 +775,26 @@ messageHandler.sendMessageToParent("verifySignature", payload, function (res) {
 
 ### encrypt
 
-用于提供文本消息的加密功能，采用椭圆曲线集成加密方案（ECIES）对文本消息进行加密。加密操作保障了消息内容的安全性，适用于需要保密传输的信息。加密结果将以 Base64 编码的字符串形式返回，便于存储或进一步的传输。
+This interface provides a text message encryption feature using the Elliptic Curve Integrated Encryption Scheme (ECIES) to encrypt text messages. The encryption operation ensures the security of the message content and is suitable for confidential information transmission. The encryption result is returned as a Base64-encoded string, facilitating storage or further transmission.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters
 
-| 字段    | 类型   | 必填 | 描述                 |
-| ------- | ------ | ---- | -------------------- |
-| message | String | 是   | 需要加密的文本消息。 |
+| Field   | Type   | Required | Description                  |
+| ------- | ------ | -------- | ---------------------------- |
+| message | String | Yes      | The text message to encrypt. |
 
-#### 返回参数
+#### Return Parameters
 
-| 字段   | 类型   | 描述                                 |
-| ------ | ------ | ------------------------------------ |
-| result | String | 加密后的消息，返回为 Base64 字符串。 |
+| Field  | Type   | Description                                         |
+| ------ | ------ | --------------------------------------------------- |
+| result | String | The encrypted message, returned as a Base64 string. |
 
-#### 示例
+
+#### example
 
 ```javascript
 let payload = {
@@ -860,7 +805,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("encrypt", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "encrypt",
@@ -874,25 +819,26 @@ messageHandler.sendMessageToParent("encrypt", payload, function (res) {
 
 ### decrypt
 
-用于解密使用 `encrypt` 接口加密的文本，确保加密数据的安全性和可逆性。通过提供加密后的密文（Base64 编码字符串），接口将还原并返回原始的明文信息。
+This interface is used to decrypt text encrypted using the `encrypt` interface, ensuring the security and reversibility of encrypted data. By providing the encrypted ciphertext (a Base64-encoded string), the interface will restore and return the original plaintext.
 
-#### 等级
+#### Level
 
 Level 0
 
-#### 请求参数
+#### Request Parameters
 
-| 字段          | 类型   | 必填 | 描述                                       |
-| ------------- | ------ | ---- | ------------------------------------------ |
-| encryptedData | String | 是   | 待解密的文本，必须是 Base64 编码的字符串。 |
+| Field         | Type   | Required | Description                                                |
+| ------------- | ------ | -------- | ---------------------------------------------------------- |
+| encryptedData | String | Yes      | The text to be decrypted, must be a Base64-encoded string. |
 
-#### 返回参数
+#### Return Parameters
 
-| 字段   | 类型   | 描述               |
-| ------ | ------ | ------------------ |
-| result | String | 解密后的原始明文。 |
+| Field  | Type   | Description                       |
+| ------ | ------ | --------------------------------- |
+| result | String | The decrypted original plaintext. |
 
-#### 示例
+
+#### example
 
 ```javascript
 let payload = {
@@ -903,7 +849,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("decrypt", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "decrypt",
@@ -919,24 +865,25 @@ messageHandler.sendMessageToParent("decrypt", payload, function (res) {
 
 ### registerService
 
-用于注册CocoApp的自服务。该方法需配合 `checkServiceStatus` 方法使用以验证注册状态。
+This method is used to register self-service for CocoApp. It should be used in conjunction with the `checkServiceStatus` method to verify the registration status.
 
-#### 等级
+#### Level
 
 Level 8
 
-#### 请求参数
+#### Request Parameters
 
-| 字段       | 类型   | 必填 | 描述                                                   |
-| ---------- | ------ | ---- | ------------------------------------------------------ |
-| serviceKey | String | 是   | 用于注册自服务的标识符。                               |
-| signKey    | String | 是   | 使用CocoApp部署账户私钥对 `serviceKey` 进行的BTC签名。 |
+| Field      | Type   | Required | Description                                                  |
+| ---------- | ------ | -------- | ------------------------------------------------------------ |
+| serviceKey | String | Yes      | The identifier used for registering the self-service.        |
+| signKey    | String | Yes      | A BTC signature of `serviceKey` made using the private key of the CocoApp deployment account. |
 
-#### 响应参数
+#### Response Parameters
 
-无
+None
 
-#### 示例
+
+#### example
 
 ```javascript
 let payload = {
@@ -953,7 +900,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("registerService", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "registerService",
@@ -966,23 +913,24 @@ messageHandler.sendMessageToParent("registerService", payload, function (res) {
 
 ### checkServiceStatus
 
-用于查询已注册自服务的状态。
+This method is used to check the status of a registered self-service.
 
-#### 等级
+#### Level
 
 Level 8
 
-#### 请求参数
+#### Request Parameters
 
-无
+None
 
-#### 响应参数
+#### Response Parameters
 
-| 字段   | 类型    | 描述                                                        |
-| ------ | ------- | ----------------------------------------------------------- |
-| result | Boolean | 表示自服务注册状态，`true` 为注册成功，`false` 为注册失败。 |
+| Field  | Type    | Description                                                  |
+| ------ | ------- | ------------------------------------------------------------ |
+| result | Boolean | Indicates the registration status: `true` for success, `false` for failure. |
 
-#### 示例
+
+#### example
 
 ```javascript
 let payload = {
@@ -993,7 +941,7 @@ let payload = {
   "messageId": new Date().getTime(),
 };
 messageHandler.sendMessageToParent("checkServiceStatus", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "checkServiceStatus",
@@ -1006,29 +954,30 @@ messageHandler.sendMessageToParent("checkServiceStatus", payload, function (res)
 
 ### sendServiceMessage
 
-用于通过P2P通信发送自服务的消息，便于进行各种服务调用和数据传输。
+This method is used to send self-service messages via P2P communication, facilitating various service calls and data transfers.
 
-#### 等级
+#### Level
 
 Level 8
 
-#### 请求参数
+#### Request Parameters
 
-| 字段    | 类型   | 必填 | 描述                                 |
-| ------- | ------ | ---- | ------------------------------------ |
-| type    | String | 是   | 请求的协议类型，目前仅支持 `HTTP`。  |
-| content | Object | 是   | 根据请求类型定义的具体请求数据结构。 |
+| Field   | Type   | Required | Description                                                  |
+| ------- | ------ | -------- | ------------------------------------------------------------ |
+| type    | String | Yes      | The protocol type of the request, currently supports only `HTTP`. |
+| content | Object | Yes      | The specific request data structure defined by the request type. |
 
-当`type`为`HTTP`时，`content`的数据结构如下：
+When `type` is `HTTP`, the data structure of `content` is as follows:
 
-| 字段    | 类型   | 必填 | 描述                                                   |
-| ------- | ------ | ---- | ------------------------------------------------------ |
-| method  | String | 是   | HTTP方法类型，可选值：`POST`、`GET`、`PUT`、`DELETE`。 |
-| url     | String | 是   | 请求的URL路径。                                        |
-| headers | Object | 否   | 请求头部，应为JSON格式键值对。                         |
-| data    | Object | 否   | 请求体中的数据，为JSON格式。                           |
+| Field   | Type   | Required | Description                                                  |
+| ------- | ------ | -------- | ------------------------------------------------------------ |
+| method  | String | Yes      | HTTP method type, options include: `POST`, `GET`, `PUT`, `DELETE`. |
+| url     | String | Yes      | The URL path for the request.                                |
+| headers | Object | No       | The headers for the request, should be a JSON key-value pair format. |
+| data    | Object | No       | The data in the request body, in JSON format.                |
 
-#### 示例
+
+#### example
 
 ```json
 {
@@ -1046,13 +995,14 @@ Level 8
 }
 ```
 
-#### 响应参数
+#### Response Parameters
 
-| 字段   | 类型   | 描述                                     |
-| ------ | ------ | ---------------------------------------- |
-| result | Object | 操作的返回结果，内容会根据实际响应变化。 |
+| Field  | Type   | Description                                                  |
+| ------ | ------ | ------------------------------------------------------------ |
+| result | Object | The result of the operation, content may vary based on the actual response. |
 
-#### 示例
+
+#### example
 
 ```javascript
 let payload = {
@@ -1078,7 +1028,7 @@ let payload = {
 };
 
 messageHandler.sendMessageToParent("sendServiceMessage", payload, function (res) {
-  // 返回结果
+  // Return result
   // {
   //   "code": 200,
   //   "cmd": "sendServiceMessage",
@@ -1091,5 +1041,9 @@ messageHandler.sendMessageToParent("sendServiceMessage", payload, function (res)
   // }    
 });
 ```
+
+
+
+
 
 
