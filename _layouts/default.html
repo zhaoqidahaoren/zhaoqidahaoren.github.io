@@ -93,23 +93,23 @@
 				{% endif %}
 			</ul>
 
-			<!-- change log -->
-			<ul>
-				{% unless page.url contains '/china/' %}
+<!--			&lt;!&ndash; change log &ndash;&gt;-->
+<!--			<ul>-->
+<!--				{% unless page.url contains '/china/' %}-->
 
-				<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">
-					{% assign changelog = site.html_pages | where: 'url', '/changelog/' | first %}
-					<a href="{{ site.baseurl }}/changelog/">{{ changelog.title }}</a>
-				</li>
-				{% endunless %}
+<!--				<li class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">-->
+<!--					{% assign changelog = site.html_pages | where: 'url', '/changelog/' | first %}-->
+<!--					<a href="{{ site.baseurl }}/changelog/">{{ changelog.title }}</a>-->
+<!--				</li>-->
+<!--				{% endunless %}-->
 
-				{% if page.url contains '/china/' %}
-				<li data="1" class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">
-					{% assign ChinaChangelog = site.html_pages | where: 'url', '/china/chinachangelog/' | first %}
-					<a href="{{ site.baseurl }}/china/chinachangelog/">{{ ChinaChangelog.title }}</a>
-				</li>
-				{% endif %}
-			</ul>
+<!--				{% if page.url contains '/china/' %}-->
+<!--				<li data="1" class="nav-item top-level {% if page.url == '/changelog/' %}current{% endif %}">-->
+<!--					{% assign ChinaChangelog = site.html_pages | where: 'url', '/china/chinachangelog/' | first %}-->
+<!--					<a href="{{ site.baseurl }}/china/chinachangelog/">{{ ChinaChangelog.title }}</a>-->
+<!--				</li>-->
+<!--				{% endif %}-->
+<!--			</ul>-->
 
 			<!-- 中英文 -->
 			<ul>
@@ -126,10 +126,10 @@
 	</header>
 
 	<section class="main">
-		<div class="page-header">
-			<h2>{% if page.category %}{{ page.category }}{% else %}{{ site.title }}{% endif %}</h2>
-			<h3>{{ page.title }}</h3>
-		</div>
+<!--		<div class="page-header">-->
+<!--			<h2>{% if page.category %}{{ page.category }}{% else %}{{ site.title }}{% endif %}</h2>-->
+<!--			<h3>{{ page.title }}</h3>-->
+<!--		</div>-->
 		<article class="content">
 			{{ content }}
 		</article>
