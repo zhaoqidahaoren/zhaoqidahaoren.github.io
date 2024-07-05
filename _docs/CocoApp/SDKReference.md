@@ -3,6 +3,7 @@ title: SDK Reference
 category: CocoApp
 order: 2
 permalink: /SDKReference/
+clickable: true
 ---
 
 # CocoAPP API

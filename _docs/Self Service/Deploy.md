@@ -3,6 +3,7 @@ title: Deploy
 category: Self Service
 order: 2
 permalink: /Deploy/
+clickable: true
 ---
 
 # CocoCat 自服务部署指南

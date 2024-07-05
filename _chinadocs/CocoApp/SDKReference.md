@@ -4,6 +4,7 @@ category: CocoApp
 order: 2
 permalink: /china/SDKReference/
 ulOrder: 1
+clickable: true
 ---
 
 # CocoAPP API

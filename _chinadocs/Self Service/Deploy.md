@@ -4,6 +4,7 @@ category: Self Service
 order: 2
 permalink: /china/Deploy/
 ulOrder: 2
+clickable: true
 ---
 
 # CocoCat 自服务部署指南

@@ -3,6 +3,7 @@ title: Deployed and Upgrade
 category: CocoApp
 order: 3
 permalink: /DeployedUpgrade/
+clickable: true
 ---
 
 # CocoApp开发指南

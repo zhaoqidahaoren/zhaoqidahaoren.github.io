@@ -4,6 +4,7 @@ category: CocoApp
 order: 3
 permalink: /china/DeployedUpgrade/
 ulOrder: 1
+clickable: true
 ---
 
 # CocoApp开发指南
