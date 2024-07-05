@@ -60,7 +60,7 @@
 			<ul>
 				{% unless page.url contains '/china/' %}
 
-				{% assign grouped = site.docs | group_by: 'category' %}
+				{% assign grouped = site.docs | group_by: 'category' | sort: 'ulOrder' %}
 				{% for group in grouped %}
 				<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
 					{% assign items = group.items | sort: 'order' %}
@@ -77,7 +77,7 @@
 
 				{% if page.url contains '/china/' %}
 
-				{% assign chinagrouped = site.chinadocs | group_by: 'category' %}
+				{% assign chinagrouped = site.chinadocs | group_by: 'category' | sort: 'ulOrder' %}
 				{% for group in chinagrouped %}
 				<li class="nav-item top-level {% if group.name == page.category %}current{% endif %}">
 					{% assign items = group.items | sort: 'order' %}

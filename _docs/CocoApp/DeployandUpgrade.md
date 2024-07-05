@@ -1,5 +1,5 @@
 ---
-title: Deployed Upgrade
+title: Deployed and Upgrade
 category: CocoApp
 order: 3
 permalink: /DeployedUpgrade/
