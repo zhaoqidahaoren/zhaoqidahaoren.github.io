@@ -2,4 +2,4 @@
 title: Welcome
 ---
 
-Welcome!
+<span style="font-size: 100px;">Welcome！</span>
